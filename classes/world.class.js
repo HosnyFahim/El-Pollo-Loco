@@ -13,6 +13,7 @@
     * - Modification    : 
 **/
 
+/* Creating a new instance of the World class. */
 class World {
     character = new Character();
     enemies = [
@@ -20,8 +21,51 @@ class World {
         new Chicken(),
         new Chicken(),
     ];
+    clouds = [
+        new Cloud()
+    ];
+    backgroundObjects = [
+        new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0, 180)
+    ];
+    canvas;
+    ctx; 
+    constructor(canvas) {
+        this.ctx = canvas.getContext('2d');
+        this.canvas = canvas;
+        this.draw();
+    }
 
+
+/**
+ * It clears the canvas, draws the character, and then calls itself again.
+ */
     draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.addToMap(this.character);
+        this.addObjectToMap(this.enemies);
+        this.addObjectToMap(this.clouds);
+        this.addObjectToMap(this.backgroundObjects);
+/* Calling the draw function again. */
+        self = this;
+        requestAnimationFrame(function() {
+            self.draw();
+        });
+    }
 
+/**
+ * For each object in the array, add it to the map.
+ * @param objects - An array of objects to add to the map.
+ */
+    addObjectToMap(objects) {
+        objects.forEach(o => {
+            this.addToMap(o);
+        });
+    }
+/**
+ * It draws an image to the canvas
+ * @param mo - the object to be drawn
+ */
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     }
 }

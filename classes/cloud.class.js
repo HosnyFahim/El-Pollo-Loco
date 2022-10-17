@@ -1,0 +1,23 @@
+/**
+    * @description      : The Cloud class is a MovableObject that has a y value of 20, a width of 500, a height of 250, and a
+random x value.
+    * @author           : hosny
+    * @group            : 
+    * @created          : 17/10/2022 - 18:48:15
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 17/10/2022
+    * - Author          : hosny
+    * - Modification    : 
+**/
+
+class Cloud extends MovableObject {
+    y = 20;
+    width = 500;
+    height = 250;
+    constructor() {
+        super().loadImage('img/5_background/layers/4_clouds/1.png');
+        this.x = Math.random() * 500;
+    }
+}

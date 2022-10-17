@@ -11,18 +11,15 @@
     * - Modification    : 
 **/
 let canvas;
-let ctx;
-let world = new World();
+let world;
 
 /**
- * The function init() is called when the page loads. It gets the canvas element from the HTML page and
- * stores it in the variable canvas. It then gets the 2D drawing context and stores that in the
- * variable ctx. The context is an object with properties and methods that you use to draw on the
- * canvas.
+ * The function init() is called when the page loads. It creates a new World object and stores it in
+ * the variable world. It also stores the canvas element in the variable canvas.
  */
 function init() {
     canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
+    world = new World(canvas);
     console.log('my charcter is', world.character);
 
 }

@@ -13,11 +13,7 @@
 
 
 class MovableObject {
-    x = 120;
-    y = 250;
     img;
-    height = 200;
-    width = 100; 
 /**
  * It creates a new image object, and sets the source of that image to the path that was passed in
  * @param path - The path to the image file.

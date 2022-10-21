@@ -14,7 +14,7 @@
 /* It creates a class called Chicken that inherits from MovableObject. */
 class Chicken extends MovableObject {
     x = 120;
-    y = 370;
+    y = 350;
     img;
     height = 80;
     width = 60; 

@@ -19,7 +19,7 @@ class MovableObject {
     speed = 0.15;
     otherDirection = false;
 
-    
+
     /**
      * It creates a new image object, and sets the source of that image to the path that was passed in
      * @param path - The path to the image file.
@@ -46,6 +46,9 @@ class MovableObject {
 
     }
 
+    /**
+     * Every 60th of a second, subtract the speed from the x value.
+     */
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;

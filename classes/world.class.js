@@ -16,26 +16,18 @@
 /* Creating a new instance of the World class. */
 class World {
     character = new Character();
-    enemies = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-    ];
-    clouds = [
-        new Cloud()
-    ];
-    backgroundObjects = [
-        new BackgroundObject('img/5_background/layers/air.png', 0),
-        new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
-        new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0),
-        new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 0),
-
-
-    ];
+    level = level1;
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
+    /**
+     * The constructor function is called when the object is created, and it sets the canvas context, the
+     * canvas, the keyboard, and then calls the draw and setWorld functions.
+     * @param canvas - The canvas element
+     * @param keyboard - This is the keyboard object that we created earlier.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -52,15 +44,16 @@ class World {
     }
 
 
-    /**
-     * It clears the canvas, draws the character, and then calls itself again.
-     */
+
+    /* Drawing the character, enemies, and clouds. */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.addObjectToMap(this.backgroundObjects);
+        this.ctx.translate(this.camera_x, 0);
+        this.addObjectToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectToMap(this.enemies);
-        this.addObjectToMap(this.clouds);
+        this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.clouds);
+        this.ctx.translate(-this.camera_x, 0);
 
         /* Calling the draw function again. */
         self = this;
@@ -80,12 +73,12 @@ class World {
     }
 
 
-/**
- * "If the object has a property called otherDirection, flip the image, draw it, then flip it back."
- * 
- * The function is called by the following code:
- * @param mo - the object to be drawn
- */
+    /**
+     * "If the object has a property called otherDirection, flip the image, draw it, then flip it back."
+     * 
+     * The function is called by the following code:
+     * @param mo - the object to be drawn
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);

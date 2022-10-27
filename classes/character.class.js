@@ -56,9 +56,10 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 120;
         }, 1000 / 60);
 
+        /* Checking if the character is moving left or right, and if so, it plays the animation. */
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.walkAnimation();
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 70);
     }
@@ -67,31 +68,4 @@ class Character extends MovableObject {
 
     }
 
-    /**
-     * "The walkAnimation() function is called every time the game loop runs. It increments the
-     * currentImages variable by 1, and then uses the currentImages variable to determine which image to
-     * display."
-     * 
-     * The walkAnimation() function is called every time the game loop runs. It increments the
-     * currentImages variable by 1, and then uses the currentImages variable to determine which image to
-     * display.
-     * 
-     * The currentImages variable is incremented by 1 every time the game loop runs. The currentImages
-     * variable is used to determine which image to display.
-     * 
-     * The currentImages variable is incremented by 1 every time the game loop runs. The currentImages
-     * variable is used to determine which image to display.
-     * 
-     * The currentImages variable is incremented by 1 every time the game loop runs. The currentImages
-     * variable is used to determine which image to display.
-     * 
-     * The currentImages variable is incremented by 1 every time the game
-     */
-    walkAnimation() {
-        let i = this.currentImages % this.IMAGES_WALKING.length; // let i = 0 % 10;
-        // i = 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; ...
-        let path = this.IMAGES_WALKING[i];
-        this.img = this.imageCache[path];
-        this.currentImages++;
-    }
 }

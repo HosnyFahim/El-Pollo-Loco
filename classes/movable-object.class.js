@@ -55,4 +55,35 @@ class MovableObject {
         }, 1000 / 60);
     }
 
+
+
+    /**
+     * "The function playAnimation() takes an array of images as a parameter, and then it sets the
+     * current image to the first image in the array, and then it increments the current image by one."
+     * 
+     * 
+     * The first line of the function is:
+     * 
+     * let i = this.currentImages % this.IMAGES_WALKING.length;
+     * 
+     * This line of code is a little confusing, so let's break it down.
+     * 
+     * this.currentImages is a variable that keeps track of the current image.
+     * 
+     * this.IMAGES_WALKING.length is the length of the array of images.
+     * 
+     * The % symbol is the modulus operator. It returns the remainder of a division operation.
+     * 
+     * So, this.currentImages % this.IMAGES_WALKING.length is the remainder of this.currentImages
+     * divided by this.IMAGES_
+     * @param images - an array of image paths
+     */
+    playAnimation(images) {
+        let i = this.currentImages % this.IMAGES_WALKING.length; // let i = 0 % 10;
+        // i = 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; ...
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImages++;
+    }
+
 }

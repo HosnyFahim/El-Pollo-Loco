@@ -14,24 +14,22 @@ random x value.
 
 class Cloud extends MovableObject {
     y = 20;
+    x = 20;
     width = 500;
-    height = 250
-    IMAGES_WALKING = [
-        'img/5_background/layers/4_clouds/1.png',
-        'img/5_background/layers/4_clouds/2.png',
-    ];
+    height = 250;
+    speed = 0.30;
 
 
-    constructor() {
-        super().loadImage(this.IMAGES_WALKING[0]);
-        this.x = Math.random() * 500;
-        this.animate();
+    constructor(imagePath, x) {
+        super().loadImage(imagePath, x);
+        this.x = x;
+        this.animateClouds();
     }
 
     /**
      * Every 60th of a second, subtract 0.1 from the x property of the object.
      */
-    animate() {
+    animateClouds() {
         this.moveLeft();
     }
 

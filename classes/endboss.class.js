@@ -1,5 +1,5 @@
 /**
-    * @description      : sdf
+    * @description      : Creating a new class called Endboss that inherits from the MovableObject class.
     * @author           : hosny
     * @group            : 
     * @created          : 27/10/2022 - 01:06:20
@@ -10,11 +10,12 @@
     * - Author          : hosny
     * - Modification    : 
 **/
+
 class Endboss extends MovableObject {
-    height = 290;
-    width = 290;
-    x = 145;
-    y = 145;
+    height = 400;
+    width = 250;
+    x = 50;
+    y = 50;
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -32,7 +33,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 700;
+        this.x = 700 * 5 + 400;
         this.animate();
     }
 

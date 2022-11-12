@@ -14,10 +14,14 @@
 
 class MovableObject {
     img;
+    y = 20;
     imageCache = {};
     currentImages = 0;
     speed = 0.15;
+    speedY = 0;
+    acceleration = 2;
     otherDirection = false;
+
 
 
     /**
@@ -43,7 +47,7 @@ class MovableObject {
     }
 
     moveRight() {
-
+        this.x += this.speed;
     }
 
     /**
@@ -86,4 +90,28 @@ class MovableObject {
         this.currentImages++;
     }
 
+
+    playIdleAnimation(images) {
+        let i = this.currentImages % this.IMAGES_IDLE.length; // let i = 0 % 10;
+        // i = 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; ...
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImages++;
+    }
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 1) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+    isAboveGround() {
+        return this.y < 140;
+    }
+
 }
+
+

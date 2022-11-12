@@ -17,7 +17,7 @@ class Cloud extends MovableObject {
     x = 20;
     width = 500;
     height = 250;
-    speed = 0.30;
+    speed = 0.15;
 
 
     constructor(imagePath, x) {

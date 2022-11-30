@@ -52,8 +52,11 @@ class Character extends MovableObject {
     world;
     walking_sound = new Audio('audio/pepe_walking.mp3');
 
-
-    constructor() {
+/**
+ * Creates an instance of Character.
+ * @memberof Character
+ */
+constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
@@ -81,7 +84,9 @@ class Character extends MovableObject {
                 this.walking_sound.play();
             }
 
-            if (this.world.keyboard.UP) {
+            console.log('this.speedY', this.speedY);
+
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.speedY = 20;
             }
             /* Moving the camera to the left. */

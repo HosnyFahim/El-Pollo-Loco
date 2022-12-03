@@ -11,7 +11,11 @@
     * - Modification    : 
 **/
 
-
+/**
+ *
+ *
+ * @class MovableObject
+ */
 class MovableObject {
     img;
     y = 20;
@@ -107,8 +111,13 @@ class MovableObject {
             }
         }, 1000 / 25);
     }
-
-    isAboveGround() {
+/**
+ *
+ *
+ * @return {*} 
+ * @memberof MovableObject
+ */
+isAboveGround() {
         return this.y < 140;
     }
 

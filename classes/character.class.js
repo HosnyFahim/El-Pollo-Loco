@@ -83,9 +83,6 @@ constructor() {
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
-
-            console.log('this.speedY', this.speedY);
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.speedY = 20;
             }
@@ -96,7 +93,7 @@ constructor() {
         /* Checking if the character is moving left or right, and if so, it plays the animation. */
         setInterval(() => {
             if (this.isAboveGround()) {
-                this.playIdleAnimation(this.IMAGES_JUMPING);
+                this.playAnimation(this.IMAGES_JUMPING);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);

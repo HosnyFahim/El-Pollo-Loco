@@ -2,9 +2,12 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: #B76127;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 canvas {
     background-color: black;
     margin-top: 40px;
+    border-radius: 30px;
 }

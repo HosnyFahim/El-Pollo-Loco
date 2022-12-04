@@ -51,7 +51,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/pepe_walking.mp3');
-    jumping_sound = new Audio('');
+    jumping_sound = new Audio('audio/pepe_jumping.mp3');
 
 /**
  * Creates an instance of Character.
@@ -86,6 +86,7 @@ constructor() {
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.speedY = 23;
+                this.jumping_sound.play();
             }
             /* Moving the camera to the left. */
             this.world.camera_x = -this.x + 120;

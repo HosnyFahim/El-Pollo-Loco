@@ -14,7 +14,7 @@ class Character extends MovableObject {
     height = 290;
     width = 120;
     x = 120;
-    // y = 20;
+    y = 20;
     speed = 10;
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -51,6 +51,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/pepe_walking.mp3');
+    jumping_sound = new Audio('');
 
 /**
  * Creates an instance of Character.
@@ -84,7 +85,7 @@ constructor() {
                 this.walking_sound.play();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.speedY = 20;
+                this.speedY = 23;
             }
             /* Moving the camera to the left. */
             this.world.camera_x = -this.x + 120;

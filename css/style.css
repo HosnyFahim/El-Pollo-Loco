@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top, #F09A4D, #C1D9E6, #049bc5);
+    font-family: 'Inter';
+}
+
+h1 {
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+}
+
+.position-relative {
+    position: relative;
+}
+
+canvas {
+    /* background-color: black; */
+    margin-top: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(131, 128, 128, 0.01);
+}

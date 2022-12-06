@@ -87,6 +87,7 @@ constructor() {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.speedY = 23;
                 this.jumping_sound.play();
+                this.walking_sound.pause();
             }
             /* Moving the camera to the left. */
             this.world.camera_x = -this.x + 120;

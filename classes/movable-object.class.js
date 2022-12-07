@@ -58,9 +58,11 @@ class MovableObject {
      * Every 60th of a second, subtract the speed from the x value.
      */
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        this.x -= this.speed;
+    }
+
+    jump() {
+        this.speedY = 23;
     }
 
 

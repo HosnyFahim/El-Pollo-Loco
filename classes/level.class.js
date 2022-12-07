@@ -15,7 +15,7 @@ class Level {
     enemies;
     clouds;
     backgroundObjects;
-    level_end_x = 700*5;
+    level_end_x = 720*7;
     /**
      * This function takes in three arrays and assigns them to the properties of the object that it is
      * called on.

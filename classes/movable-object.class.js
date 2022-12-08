@@ -25,6 +25,7 @@ class MovableObject {
     speedY = 0;
     acceleration = 2;
     otherDirection = false;
+    energy = 100;
 
 
 
@@ -113,16 +114,72 @@ class MovableObject {
             }
         }, 1000 / 25);
     }
-/**
- *
- *
- * @return {*} 
- * @memberof MovableObject
- */
-isAboveGround() {
+
+    /**
+     *
+    *
+    * @return {*} 
+    * @memberof MovableObject
+    */
+    isAboveGround() {
         return this.y < 140;
     }
+    /**
+     *
+     *
+     * @param {*} ctx
+     * @memberof MovableObject
+     */
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+    /**
+     *
+     *
+     * @param {*} ctx
+     * @memberof MovableObject
+     */
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken || this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+    /**
+     * 
+     *
+     * @param {the object to be drawn} mo
+     * @return {character.isColliding(chcicken);}  
+     * @memberof MovableObject
+     */
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
 
 }
 
+
+// if (character.x + character.width > chicken.x &&
+//     character.y + character.height > chciken.y &&
+//     character.x < chicken.x &&
+//     character.y < chicken.y + chicken.height
+// )
 

@@ -26,6 +26,7 @@ class MovableObject {
     acceleration = 2;
     otherDirection = false;
     energy = 100;
+    lastHit = 0;
 
 
 
@@ -64,6 +65,7 @@ class MovableObject {
 
     jump() {
         this.speedY = 23;
+        this.jumping_sound.play();
     }
 
 
@@ -90,7 +92,7 @@ class MovableObject {
      * @param images - an array of image paths
      */
     playAnimation(images) {
-        let i = this.currentImages % this.IMAGES_WALKING.length; // let i = 0 % 10;
+        let i = this.currentImages % images.length; // let i = 0 % 10;
         // i = 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; ...
         let path = images[i];
         this.img = this.imageCache[path];
@@ -166,7 +168,20 @@ class MovableObject {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
+    }
+    /**
+     *
+     *
+     * @return {*} 
+     * @memberof MovableObject
+     */
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 500; // Difference in Seconds
+        return timePassed < 1;
     }
 
     isDead() {

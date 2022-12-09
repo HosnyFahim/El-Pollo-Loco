@@ -68,6 +68,8 @@ class Character extends MovableObject {
     world;
     walking_sound = new Audio('audio/pepe_walking.mp3');
     jumping_sound = new Audio('audio/pepe_jumping.mp3');
+    hurt_sound = new Audio('audio/pepe_hurt.mp3');
+    dead_sound = new Audio('audio/pepe_dead.mp3');
 
     /**
      * Creates an instance of Character.
@@ -105,7 +107,7 @@ class Character extends MovableObject {
             /* Moving the character to the Top Jumping. */
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.jumping_sound.play();
+
                 this.walking_sound.pause();
             }
             /* Moving the character to the left or right. */
@@ -116,6 +118,10 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.dead_sound.play();
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+                this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
@@ -123,7 +129,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
                 else {
-                    this.playIdleAnimation(this.IMAGES_IDLE);
+                    this.playAnimation(this.IMAGES_IDLE);
                 }
             }
         }, 100);

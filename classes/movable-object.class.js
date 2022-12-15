@@ -16,41 +16,21 @@
  *
  * @class MovableObject
  */
-class MovableObject {
-    img;
-    y = 20;
-    imageCache = {};
-    currentImages = 0;
+class MovableObject extends DrawableObjaect {
     speed = 0.15;
     speedY = 0;
     acceleration = 2;
     otherDirection = false;
     energy = 100;
     lastHit = 0;
-
-
-
-    /**
-     * It creates a new image object, and sets the source of that image to the path that was passed in
-     * @param path - The path to the image file.
-     */
-    loadImage(path) {
-        this.img = new Image();  // this.img = document.getElementById('image) <img id = "image" src = "path"/>
-        this.img.src = path;
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
     }
 
-    /**
-     * It takes an array of image paths, creates a new image object for each path, sets the source of the
-     * image to the path, and then adds the path to the imageCache object.
-     * @param arr - An array of image paths
-     */
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
+
 
     moveRight() {
         this.x += this.speed;
@@ -126,33 +106,13 @@ class MovableObject {
     isAboveGround() {
         return this.y < 140;
     }
+
+
     /**
-     *
-     *
-     * @param {*} ctx
-     * @memberof MovableObject
-     */
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-    /**
-     *
-     *
-     * @param {*} ctx
-     * @memberof MovableObject
-     */
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-    /**
-     * 
-     *
+     * If the right side of the player is greater than the left side of the monster, and the bottom of the
+     * player is greater than the top of the monster, and the left side of the player is less than the
+     * right side of the monster, and the top of the player is less than the bottom of the monster, then
+     * the player is colliding with the monster.
      * @param {the object to be drawn} mo
      * @return {character.isColliding(chcicken);}  
      * @memberof MovableObject
@@ -180,7 +140,7 @@ class MovableObject {
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
-        timePassed = timePassed / 500; // Difference in Seconds
+        timePassed = timePassed / 1000; // Difference in Seconds
         return timePassed < 1;
     }
 

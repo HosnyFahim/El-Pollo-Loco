@@ -1,5 +1,5 @@
 
-class DrawableObjaect {
+class DrawableObject {
     img;
     imageCache = {};
     currentImages = 0;
@@ -37,13 +37,7 @@ class DrawableObjaect {
     * @memberof MovableObject
     */
     draw(ctx) {
-        try {
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        } catch (error) {
-            console.warn('image could not loaded', error);
-            console.log(this.img.src);
-        }
-
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     /**

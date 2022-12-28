@@ -16,12 +16,14 @@
 /* Creating a new instance of the World class. */
 class World {
     character = new Character();
+    StatusBarHealth = new StatusBarHealth();
+    StatusBarCoin = new StatusBarCoin();
     level = level1;
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
+
 
     /**
      * The constructor function is called when the object is created, and it sets the canvas context, the
@@ -50,7 +52,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
+                    this.StatusBarHealth.setPercentage(this.character.energy);
                     console.log('collision with Character, energy', this.character.energy);
                 }
             });
@@ -67,7 +69,7 @@ class World {
         this.addObjectToMap(this.level.clouds);
         this.addObjectToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0); // --------- Space for fixed Objects -------- //
-        this.addToMap(this.statusBar);
+        this.addToMap(this.StatusBarHealth);
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);

@@ -16,7 +16,7 @@
  *
  * @class MovableObject
  */
-class MovableObject extends DrawableObjaect {
+class MovableObject extends DrawableObject {
     speed = 0.15;
     speedY = 0;
     acceleration = 2;

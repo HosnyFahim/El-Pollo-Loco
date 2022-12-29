@@ -26,8 +26,8 @@ class MovableObject extends DrawableObject {
     offset = {
         top: 0,
         bottom: 0,
-        left: 0,
-        right: 0
+        left: 10,
+        right: 10
     }
 
 
@@ -44,7 +44,7 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 23;
+        this.speedY = 25;
         this.jumping_sound.play();
     }
 
@@ -80,13 +80,7 @@ class MovableObject extends DrawableObject {
     }
 
 
-    playIdleAnimation(images) {
-        let i = this.currentImages % this.IMAGES_IDLE.length; // let i = 0 % 10;
-        // i = 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; 0, 1, 2, 3, 4, 5; ...
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImages++;
-    }
+
 
     applyGravity() {
         setInterval(() => {

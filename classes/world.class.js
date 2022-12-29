@@ -17,7 +17,7 @@
 class World {
     character = new Character();
     StatusBarHealth = new StatusBarHealth();
-    StatusBarCoin = new StatusBarCoin();
+    // StatusBarCoin = new StatusBarCoin();
     level = level1;
     canvas;
     ctx;
@@ -69,6 +69,7 @@ class World {
         this.addObjectToMap(this.level.clouds);
         this.addObjectToMap(this.level.enemies);
         this.addObjectToMap(this.level.bottles);
+        this.addObjectToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0); // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
@@ -110,6 +111,7 @@ class World {
         }
         mo.drawFrameCharacter(this.ctx);
         mo.drawFrameBottle(this.ctx);
+        mo.drawFrameCoin(this.ctx);
 
 
     }

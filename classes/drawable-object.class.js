@@ -51,7 +51,7 @@ class DrawableObject {
         if (this instanceof Chicken || this instanceof SmallChicken || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
@@ -71,8 +71,18 @@ class DrawableObject {
         if (this instanceof Bottle) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'blue';
             ctx.rect(this.x + 35, this.y + 20, this.width - 60, this.height - 30);
+            ctx.stroke();
+        }
+    }
+
+    drawFrameCoin(ctx) {
+        if (this instanceof Coin) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x + 30, this.y + 30, this.width - 60, this.height - 60);
             ctx.stroke();
         }
     }

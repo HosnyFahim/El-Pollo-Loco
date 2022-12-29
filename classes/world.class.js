@@ -68,6 +68,7 @@ class World {
         this.addObjectToMap(this.level.backgroundObjects);
         this.addObjectToMap(this.level.clouds);
         this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.bottles);
         this.ctx.translate(-this.camera_x, 0); // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
@@ -108,6 +109,7 @@ class World {
             this.flipImageBack(mo);
         }
         mo.drawFrameCharacter(this.ctx);
+        mo.drawFrameBottle(this.ctx);
 
 
     }

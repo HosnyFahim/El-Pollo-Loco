@@ -15,6 +15,7 @@ class Level {
     enemies;
     clouds;
     backgroundObjects;
+    bottles;
     level_end_x = 720*7;
     /**
      * This function takes in three arrays and assigns them to the properties of the object that it is
@@ -23,9 +24,10 @@ class Level {
      * @param clouds - an array of objects that have a position and a velocity.
      * @param backgroundObjects - An array of objects that are in the background.
      */
-    constructor(enemies, clouds, backgroundObjects) {
+    constructor(enemies, clouds, backgroundObjects, bottles) {
         this.enemies = enemies;
         this.clouds = clouds;
         this.backgroundObjects = backgroundObjects;
+        this.bottles = bottles;
     }
 }

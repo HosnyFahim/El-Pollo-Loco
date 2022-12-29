@@ -62,7 +62,17 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'green';
-            ctx.rect(this.x + 15, this.y + 100, this.width - 30, this.height - 100);
+            ctx.rect(this.x + 15, this.y + 100, this.width - 40, this.height - 100);
+            ctx.stroke();
+        }
+    }
+
+    drawFrameBottle(ctx) {
+        if (this instanceof Bottle) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x + 35, this.y + 20, this.width - 60, this.height - 30);
             ctx.stroke();
         }
     }

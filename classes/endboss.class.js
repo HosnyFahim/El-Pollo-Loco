@@ -37,9 +37,10 @@ class Endboss extends MovableObject {
         this.animateAlertEndboss();
     }
 
-    /**
-     * Every 200 milliseconds, call the playAnimation function and pass it the IMAGES_WALKING array.
-     */
+
+/**
+ * Every 200 milliseconds, call the playAnimation function and pass it the IMAGES_ALERT array.
+ */
     animateAlertEndboss() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_ALERT);

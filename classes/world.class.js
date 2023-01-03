@@ -17,7 +17,7 @@
 class World {
     character = new Character();
     StatusBarHealth = new StatusBarHealth();
-    // StatusBarCoin = new StatusBarCoin();
+    StatusBarCoin = new StatusBarCoin();
     level = level1;
     canvas;
     ctx;
@@ -70,11 +70,15 @@ class World {
         this.addObjectToMap(this.level.enemies);
         this.addObjectToMap(this.level.bottles);
         this.addObjectToMap(this.level.coins);
-        this.ctx.translate(-this.camera_x, 0); // --------- Space for fixed Objects -------- //
+        this.ctx.translate(-this.camera_x, 0);
+ // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);
+        this.addToMap(this.StatusBarCoin);
+        
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
+
 
         /* Calling the draw function again. */
         self = this;

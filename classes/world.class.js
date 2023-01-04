@@ -18,6 +18,8 @@ class World {
     character = new Character();
     StatusBarHealth = new StatusBarHealth();
     StatusBarCoin = new StatusBarCoin();
+    StatusBarBottle = new StatusBarBottle();
+
     level = level1;
     canvas;
     ctx;
@@ -74,6 +76,7 @@ class World {
  // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarCoin);
+        this.addToMap(this.StatusBarBottle);
         
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
         this.addToMap(this.character);

@@ -19,6 +19,8 @@ class World {
     StatusBarHealth = new StatusBarHealth();
     StatusBarCoin = new StatusBarCoin();
     StatusBarBottle = new StatusBarBottle();
+    StatusBarEndBossIcon = new StatusBarEndBossIcon();
+    StatusBarEndBossHealth = new StatusBarEndBossHealth();
 
     level = level1;
     canvas;
@@ -77,7 +79,9 @@ class World {
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarCoin);
         this.addToMap(this.StatusBarBottle);
-        
+        this.addToMap(this.StatusBarEndBossHealth);
+        this.addToMap(this.StatusBarEndBossIcon);
+
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);

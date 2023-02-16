@@ -1,15 +1,4 @@
-/**
-    * @description      : Variables
-    * @author           : hosny
-    * @group            : 
-    * @created          : 14/10/2022 - 15:03:26
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 14/10/2022
-    * - Author          : hosny
-    * - Modification    : 
-**/
+
 let canvas;
 let world;
 let keyboard = new Keyboard();

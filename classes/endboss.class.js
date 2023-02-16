@@ -1,15 +1,4 @@
-/**
-    * @description      : Creating a new class called Endboss that inherits from the MovableObject class.
-    * @author           : hosny
-    * @group            : 
-    * @created          : 27/10/2022 - 01:06:20
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 27/10/2022
-    * - Author          : hosny
-    * - Modification    : 
-**/
+
 
 class Endboss extends MovableObject {
     height = 400;

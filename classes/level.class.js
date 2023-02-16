@@ -1,15 +1,4 @@
-/**
-    * @description      : level is a collection of enemies, clouds, and background objects
-    * @author           : hosny
-    * @group            : 
-    * @created          : 26/10/2022 - 17:18:35
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 26/10/2022
-    * - Author          : hosny
-    * - Modification    : 
-**/
+
 
 class Level {
     enemies;

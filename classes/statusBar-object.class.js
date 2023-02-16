@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class StatusBar extends MovableObject {
     // width = 250;
     // percentage = 100;
 

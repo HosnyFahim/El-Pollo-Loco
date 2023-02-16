@@ -1,15 +1,4 @@
-/**
-    * @description      : 
-    * @author           : hosny
-    * @group            : 
-    * @created          : 26/10/2022 - 17:10:42
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 26/10/2022
-    * - Author          : hosny
-    * - Modification    : 
-**/
+
 const level1 = new Level(
     [
 

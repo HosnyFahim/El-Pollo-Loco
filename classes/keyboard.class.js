@@ -34,25 +34,25 @@ window.addEventListener("keydown", (e) => {
 })
 
 /* Listening to the keyboard and setting the keyboard object to false when the key is released. */
-window.addEventListener('keyup', (event) => {
-    if (event.keyCode == 39) {
+window.addEventListener("keyup", (e) => {
+    if (e.code == "ArrowRight") {
         keyboard.RIGHT = false;
     }
 
-    if (event.keyCode == 37) {
+    if (e.code == "ArrowLeft") {
         keyboard.LEFT = false;
     }
 
-    if (event.keyCode == 38) {
+    if (e.code == "ArrowUp") {
         keyboard.UP = false;
     }
 
-    if (event.keyCode == 40) {
+    if (e.code == "ArrowDown") {
         keyboard.DOWN = false;
     }
 
-    if (event.keyCode == 32) {
+    if (e.code == "Space") {
         keyboard.SPACE = false;
     }
 
-});
+})

@@ -21,6 +21,9 @@ class MovableObject extends DrawableObject {
 
 
 
+    /**
+     * The function moves an object to the right by increasing its x-coordinate based on its speed.
+     */
     moveRight() {
         this.x += this.speed;
     }
@@ -32,6 +35,9 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
+    /**
+     * The "jump" function sets the vertical speed of an object to 25 and plays a sound effect.
+     */
     jump() {
         this.speedY = 25;
         this.jumping_sound.play();
@@ -71,6 +77,9 @@ class MovableObject extends DrawableObject {
 
 
 
+    /**
+     * The function applies gravity to an object by decreasing its vertical position and speed over time.
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -107,6 +116,10 @@ class MovableObject extends DrawableObject {
         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    /**
+     * The function decreases the energy of a character by 5 and sets the last hit time if the energy is
+     * not negative.
+     */
     hitCharacter() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -127,6 +140,12 @@ class MovableObject extends DrawableObject {
         return timePassed < 1;
     }
 
+    /**
+     * The function checks if an object's energy level is equal to zero and returns a boolean value.
+     * @returns The `isDead()` method is returning a boolean value that indicates whether the energy of the
+    * object is equal to zero or not. If the energy is zero, it will return `true`, indicating that the
+     * object is dead. Otherwise, it will return `false`, indicating that the object is still alive.
+     */
     isDead() {
         return this.energy == 0;
     }
@@ -135,9 +154,4 @@ class MovableObject extends DrawableObject {
 }
 
 
-// if (character.x + character.width > chicken.x &&
-//     character.y + character.height > chciken.y &&
-//     character.x < chicken.x &&
-//     character.y < chicken.y + chicken.height
-// )
 

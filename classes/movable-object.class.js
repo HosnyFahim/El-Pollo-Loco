@@ -26,6 +26,7 @@ class MovableObject extends DrawableObject {
      */
     moveRight() {
         this.x += this.speed;
+        this.walking_sound.play();
     }
 
     /**
@@ -33,6 +34,7 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
+        this.walking_sound.play();
     }
 
     /**
@@ -41,6 +43,12 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 25;
         this.jumping_sound.play();
+    }
+
+    sleep() {
+        let timepassed = new Date().getTime() - this.characterLastMovement;
+        timepassed = timepassed / 1000;
+        return timepassed > 1.5;
     }
 
 

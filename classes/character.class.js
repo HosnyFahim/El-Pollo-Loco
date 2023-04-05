@@ -72,6 +72,7 @@ class Character extends MovableObject {
     jumping_sound = new Audio('audio/pepe_jumping.mp3');
     hurt_sound = new Audio('audio/pepe_hurt.mp3');
     dead_sound = new Audio('audio/pepe_dead.mp3');
+    characterLastMovement = 0;
 
     /**
      * Creates an instance of Character.
@@ -98,18 +99,15 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
             }
             /* Moving the character to the left. */
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
             }
             /* Moving the character to the Top Jumping. */
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-
                 this.walking_sound.pause();
             }
             /* Moving the character to the left or right. */
@@ -127,12 +125,18 @@ class Character extends MovableObject {
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-                else {
-                    this.playAnimation(this.IMAGES_IDLE);
-                }
+                this.playAnimation(this.IMAGES_WALKING);
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
+            }
+            // setTimeout(() => {
+            //     this.playAnimation(this.IMAGES_SLEEP);
+            // }, 2000);
         }, 100);
+    }
+
+    characterSleepAnimation() {
+        this.playAnimation(this.IMAGES_SLEEP);
     }
 
 

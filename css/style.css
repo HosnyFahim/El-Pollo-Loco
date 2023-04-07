@@ -20,8 +20,64 @@ h1 {
 }
 
 canvas {
-    /* background-color: black; */
-    /* margin-top: 40px; */
     border-radius: 20px;
     border: 1px solid rgba(131, 128, 128, 0.01);
+}
+
+.d-none {
+    display: none;
+}
+
+.soundOff {
+    position: absolute;
+    right: 9%;
+    top: 2%;
+    width: 40px;
+}
+
+.soundOff:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.2);
+}
+
+.soundOn {
+    position: absolute;
+    right: 9%;
+    top: 2%;
+    width: 40px;
+}
+
+.soundOn:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.2);
+}
+
+.fullScreen {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    width: 40px;
+    cursor: pointer;
+}
+
+.fullScreen:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.2);
+}
+
+.closeFullScreen {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    width: 40px;
+    cursor: pointer;
+}
+
+.closeFullScreen:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.2);
 }

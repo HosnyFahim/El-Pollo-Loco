@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 290;
     width = 120;
     x = 12;
-    y = 20;
+    y = 10;
     speed = 10;
     IMAGES_IDLE = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -103,11 +103,13 @@ class Character extends MovableObject {
             /* Moving the character to the left. */
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
+                this.walking_sound.play();
                 this.otherDirection = true;
             }
             /* Moving the character to the Top Jumping. */
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jumping_sound.play();
                 this.walking_sound.pause();
             }
             /* Moving the character to the left or right. */

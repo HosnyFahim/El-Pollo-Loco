@@ -112,6 +112,10 @@ canvas {
     width: 40px;
 }
 
+.imgJump {
+    width: 48px;
+}
+
 .border {
     height: 60px;
     width: 60px;

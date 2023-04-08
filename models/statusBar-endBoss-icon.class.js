@@ -6,7 +6,7 @@ class StatusBarEndBossIcon extends StatusBar {
 
 
         constructor() {
-            super().loadImage(this.IMAGES[0]);
+            super().loadImage(this.IMAGES);
             this.x = 520;
             this.y = 40;
             this.width = 50;

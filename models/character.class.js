@@ -1,5 +1,11 @@
 
 class Character extends MovableObject {
+    world;
+    walking_sound = new Audio('audio/pepe_walking.mp3');
+    jumping_sound = new Audio('audio/pepe_jumping.mp3');
+    hurt_sound = new Audio('audio/pepe_hurt.mp3');
+    dead_sound = new Audio('audio/pepe_dead.mp3');
+    characterLastMovement = 0;
     height = 290;
     width = 120;
     x = 12;
@@ -67,12 +73,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
     ];
-    world;
-    walking_sound = new Audio('audio/pepe_walking.mp3');
-    jumping_sound = new Audio('audio/pepe_jumping.mp3');
-    hurt_sound = new Audio('audio/pepe_hurt.mp3');
-    dead_sound = new Audio('audio/pepe_dead.mp3');
-    characterLastMovement = 0;
+
 
     /**
      * Creates an instance of Character.
@@ -80,6 +81,7 @@ class Character extends MovableObject {
      */
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
@@ -131,14 +133,13 @@ class Character extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-            // setTimeout(() => {
-            //     this.playAnimation(this.IMAGES_SLEEP);
-            // }, 2000);
         }, 100);
     }
 
-    characterSleepAnimation() {
-        this.playAnimation(this.IMAGES_SLEEP);
+    characterMoveTimePassed() {
+        let timepassed = new Date().getTime() - this.characterLastMovement;
+        timepassed = timepassed / 3000;
+        return timepassed;
     }
 
 

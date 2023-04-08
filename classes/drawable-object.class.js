@@ -62,7 +62,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'green';
-            ctx.rect(this.x + 15, this.y + 100, this.width - 40, this.height - 100);
+            ctx.rect(this.x + 15, this.y + 100, this.width - 40, this.height - 117);
             ctx.stroke();
         }
     }

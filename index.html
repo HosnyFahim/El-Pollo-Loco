@@ -19,8 +19,8 @@
     <script src="classes/statusBar-health.class.js"></script>
     <script src="classes/statusBar-coin.class.js"></script>
     <script src="classes/statusBar-bottle.class.js"></script>
-    <script src="classes/statusBar-endBoss-icon.class.js"></script> 
-    <script src="classes/statusBar-endboss-health.class.js"></script> 
+    <script src="classes/statusBar-endBoss-icon.class.js"></script>
+    <script src="classes/statusBar-endboss-health.class.js"></script>
     <script src="classes/character.class.js"></script>
     <script src="classes/chicken.class.js"></script>
     <script src="classes/small-chicken.class.js"></script>
@@ -38,10 +38,27 @@
     <h1>El Pollo Loco</h1>
     <div class="position-relative" id="fullScreen">
         <canvas id="canvas" width="720px" height="480px"></canvas>
-        <img onclick="" class="soundOff" src="icons/soundoff.png">
-        <img onclick="" class="soundOn d-none" src="icons/soundon.png">
-        <img onclick="" class="fullScreen" src="icons/fullscreen.png">
-        <img onclick="" class="closefullScreen d-none" src="icons/closfullscrenn.png">
+        <img onclick="turnSoundOff()" class="soundOff" id="sound-off" src="icons/soundoff.png">
+        <img onclick="turnSoundOn()" class="soundOn d-none" id="sound-on" src="icons/soundon.png">
+        <img onclick="turnFullScreenOn()" class="fullScreen" id="fullScreen-on" src="icons/fullscreen.png">
+        <img onclick="turnFullScreenOff()" class="closeFullScreen d-none" id="fullScreen-off"
+            src="icons/closfullscrenn.png">
+        <div class="positionLeft">
+            <div class="border">
+                <img class="imgBack" src="icons/back.png">
+            </div>
+            <div class="border">
+                <img class="imgForward" src="icons/forward.png">
+            </div>
+        </div>
+        <div class="positionRight">
+            <div class="border">
+                <img src="icons/">
+            </div>
+            <div class="border">
+                <img class="imgBottle" src="icons/bottle.svg">
+            </div>
+        </div>
     </div>
 
 </body>

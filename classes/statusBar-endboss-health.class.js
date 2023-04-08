@@ -11,7 +11,7 @@ class StatusBarEndBossHealth extends StatusBar {
     constructor() {
         super().loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
-        this.x = 475;
+        this.x = 530;
         this.y = 40;
         this.width = 160;
         this.height = 40;

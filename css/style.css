@@ -81,3 +81,43 @@ canvas {
     transition: all 225ms ease-in-out;
     transform: scale(1.2);
 }
+
+.positionLeft {
+    position: absolute;
+    display: flex;
+    gap: 12px;
+    left: 9px;
+    bottom: 13px;
+}
+
+.imgBack {
+    padding-left: 18px;
+    width: 40px;
+}
+
+.imgForward {
+    width: 40px;
+}
+
+.positionRight {
+    position: absolute;
+    display: flex;
+    gap: 12px;
+    right: 9px;
+    bottom: 13px;
+
+}
+
+.imgBottle {
+    width: 40px;
+}
+
+.border {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -17,6 +17,7 @@ h1 {
 
 .position-relative {
     position: relative;
+    margin-bottom: 100px;
 }
 
 canvas {

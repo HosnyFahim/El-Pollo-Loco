@@ -39,6 +39,7 @@ const level1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 5000),
         new Cloud('img/5_background/layers/4_clouds/1.png', 5400),
         new Cloud('img/5_background/layers/4_clouds/1.png', 5800),
+        new Cloud('img/5_background/layers/4_clouds/2.png', 6200)
     ],
 
     [

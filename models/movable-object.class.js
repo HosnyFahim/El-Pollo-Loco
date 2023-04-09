@@ -54,12 +54,12 @@ class MovableObject extends DrawableObject {
         return timepassed > 1.5;
     }
 
-    collectCoin(){
+    collectCoin() {
         this.coins++;
         console.log('co :>> ', this.coins);
     };
 
-    collectBottle(){
+    collectBottle() {
         this.bottles++;
         console.log('bo :>> ', this.bottles);
     };
@@ -115,7 +115,12 @@ class MovableObject extends DrawableObject {
     * @memberof MovableObject
     */
     isAboveGround() {
-        return this.y < 140;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 140;
+        }
+
     }
 
 
@@ -130,9 +135,9 @@ class MovableObject extends DrawableObject {
      */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&    //   right > left =>   Collision in front
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&     //    top > bottom =>   Collision bottom
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&       //     left > right =>   Collision behind
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&     //    top > bottom =>   Collision bottom
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&       //     left > right =>   Collision behind
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
 

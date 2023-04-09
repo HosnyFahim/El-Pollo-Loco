@@ -31,6 +31,10 @@ window.addEventListener("keydown", (e) => {
         keyboard.SPACE = true;
     }
 
+    if (e.code == "KeyS") {
+        keyboard.S = true;
+    }
+
 })
 
 /* Listening to the keyboard and setting the keyboard object to false when the key is released. */
@@ -53,6 +57,10 @@ window.addEventListener("keyup", (e) => {
 
     if (e.code == "Space") {
         keyboard.SPACE = false;
+    }
+
+    if (e.code == "KeyS") {
+        keyboard.S = false;
     }
 
 })

@@ -8,6 +8,7 @@ class World {
     StatusBarBottle = new StatusBarBottle();
     StatusBarEndBossIcon = new StatusBarEndBossIcon();
     StatusBarEndBossHealth = new StatusBarEndBossHealth();
+    throwableObjects = [];
     level = level1;
     canvas;
     ctx;
@@ -40,7 +41,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            // this.cheThrowObjects();
+            this.checkThrowObject();
         }, 200);
     }
 
@@ -70,6 +71,15 @@ class World {
         });
     }
 
+    checkThrowObject() {
+        if (this.keyboard.S && this.character.bottles > 0) {
+            let throwableBottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(throwableBottle);
+            this.character.bottles--;
+            this.StatusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
+        }
+    }
+
 
 
     coinCollected(coin) {
@@ -80,6 +90,12 @@ class World {
     bottleCollected(bottles) {
         let i = this.level.bottles.indexOf(bottles);
         this.level.bottles.splice(i, 1);
+        this.maxBottlesToThrow++;
+    }
+
+    deletEnemyFromArray(enemy) {
+        let i = this.level.enemies.indexOf(enemy);
+        this.level.enemies.splice(i, 1);
     }
 
 
@@ -94,6 +110,7 @@ class World {
         this.addObjectToMap(this.level.endboss);
         this.addObjectToMap(this.level.bottles);
         this.addObjectToMap(this.level.coins);
+        this.addObjectToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
         // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);

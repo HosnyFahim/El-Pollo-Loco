@@ -7,9 +7,9 @@ class StatusBar extends DrawableObject {
      * It takes a percentage and sets the image to the appropriate image in the imageStatusbar array.
      * @param percentage - The percentage of the bar to fill.
      */
-    setPercentage(percentage) {
+    setPercentage(percentage, object) {
         this.percentage = percentage;
-        let path = this.IMAGES[this.resolveimageIndex(percentage)];
+        let path = this.IMAGES[this.resolveimageIndex(percentage, object)];
         this.img = this.imageCache[path];
 
     }
@@ -21,16 +21,16 @@ class StatusBar extends DrawableObject {
      * @param percentage - The percentage of the progress bar that is filled.
      * @returns the index of the image to be displayed.
      */
-    resolveimageIndex(percentage) {
-        if (percentage == 100) {
+    resolveimageIndex(percentage, object) {
+        if (percentage == object) {
             return 5;
-        } else if (percentage > 80) {
+        } else if (percentage > object/5*4) {
             return 4;
-        } else if (percentage > 60) {
+        } else if (percentage > object/5*3) {
             return 3;
-        } else if (percentage > 40) {
+        } else if (percentage > object/5*2) {
             return 2;
-        } else if (percentage > 20) {
+        } else if (percentage > object/5) {
             return 1;
         } else {
             return 0;

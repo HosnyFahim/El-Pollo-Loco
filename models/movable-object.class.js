@@ -12,11 +12,16 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     lastHit = 0;
+    maxEnergy = 100;
+    maxCoins = 20;
+    maxBottles = 17;
+    coins = 0;
+    bottles = 0;
     offset = {
         top: 0,
         bottom: 0,
-        left: 10,
-        right: 10
+        left: 0,
+        right: 0
     }
 
 
@@ -49,7 +54,15 @@ class MovableObject extends DrawableObject {
         return timepassed > 1.5;
     }
 
+    collectCoin(){
+        this.coins++;
+        console.log('co :>> ', this.coins);
+    };
 
+    collectBottle(){
+        this.bottles++;
+        console.log('bo :>> ', this.bottles);
+    };
 
     /**
      * "The function playAnimation() takes an array of images as a parameter, and then it sets the
@@ -121,6 +134,7 @@ class MovableObject extends DrawableObject {
         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&       //     left > right =>   Collision behind
         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
+
 
     /**
      * The function decreases the energy of a character by 5 and sets the last hit time if the energy is

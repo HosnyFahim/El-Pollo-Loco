@@ -27,7 +27,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     /**
@@ -37,16 +37,49 @@ class World {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)) {
-                    this.character.hitCharacter();
-                    this.StatusBarHealth.setPercentage(this.character.energy);
-                    console.log('collision with Character, energy', this.character.energy);
-                }
-            });
+            this.checkCollisions();
+            // this.cheThrowObjects();
         }, 200);
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hitCharacter();
+                this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
+                console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
+            }
+        });
+        this.level.coins.forEach((coin) => {
+
+            if (this.character.isColliding(coin)) {
+                this.character.collectCoin();
+                this.coinCollected(coin);
+                this.StatusBarCoin.setPercentage(this.character.coins, this.character.maxCoins);
+            }
+        });
+        this.level.bottles.forEach((bottles) => {
+
+            if (this.character.isColliding(bottles)) {
+                this.character.collectBottle();
+                this.bottleCollected(bottles);
+                this.StatusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
+            }
+        });
+    }
+
+
+
+    coinCollected(coin) {
+        let i = this.level.coins.indexOf(coin);
+        this.level.coins.splice(i, 1);
+    }
+
+    bottleCollected(bottles) {
+        let i = this.level.bottles.indexOf(bottles);
+        this.level.bottles.splice(i, 1);
     }
 
 
@@ -58,10 +91,11 @@ class World {
         this.addObjectToMap(this.level.backgroundObjects);
         this.addObjectToMap(this.level.clouds);
         this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.endboss);
         this.addObjectToMap(this.level.bottles);
         this.addObjectToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
- // --------- Space for fixed Objects -------- //
+        // --------- Space for fixed Objects -------- //
         this.addToMap(this.StatusBarHealth);
         this.addToMap(this.StatusBarCoin);
         this.addToMap(this.StatusBarBottle);
@@ -70,8 +104,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
-
-
         /* Calling the draw function again. */
         self = this;
         requestAnimationFrame(function () {

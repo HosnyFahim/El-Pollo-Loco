@@ -20,7 +20,7 @@ class Endboss extends MovableObject {
      * object's properties and methods.
      */
     constructor() {
-        super().loadImage(this.IMAGES_ALERT[0]);
+        super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_ALERT);
         this.x = 720 * 7 + 200;
         this.animateAlertEndboss();

@@ -42,19 +42,12 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObject();
+            this.enemyCharacterColision();
         }, 200);
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hitCharacter();
-                this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
-                console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
-            }
-        });
         this.level.coins.forEach((coin) => {
-
             if (this.character.isColliding(coin)) {
                 this.character.collectCoin();
                 this.coinCollected(coin);
@@ -62,12 +55,28 @@ class World {
             }
         });
         this.level.bottles.forEach((bottles) => {
-
             if (this.character.isColliding(bottles)) {
                 this.character.collectBottle();
                 this.bottleCollected(bottles);
                 this.StatusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
             }
+        });
+    }
+
+    enemyCharacterColision() {
+        this.setFalling();
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isCollidingTop(enemy) && this.isDecreasing(this.oldValue, this.newValue)) {
+                this.character.jump();
+                enemy.dead = true;
+                setTimeout(() => {
+                    this.deletEnemyFromArray(this.level.enemies, enemy);
+                }, 500);
+            } else if (this.character.isColliding(enemy)) {
+                this.character.hitCharacter();
+                this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
+
+            } console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
         });
     }
 
@@ -97,7 +106,6 @@ class World {
         let i = this.level.enemies.indexOf(enemy);
         this.level.enemies.splice(i, 1);
     }
-
 
 
     /* Drawing the character, enemies, and clouds. */
@@ -192,6 +200,17 @@ class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    isDecreasing(oldValue, newValue) {
+        return oldValue < newValue;
+    }
+
+    setFalling() {
+        this.newValue = this.character.y;
+        setTimeout(() => {
+            this.oldValue = this.character.y;
+        }, 500);
     }
 
 }

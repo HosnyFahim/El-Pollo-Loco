@@ -64,6 +64,7 @@ class MovableObject extends DrawableObject {
         console.log('bo :>> ', this.bottles);
     };
 
+
     /**
      * "The function playAnimation() takes an array of images as a parameter, and then it sets the
      * current image to the first image in the array, and then it increments the current image by one."
@@ -138,6 +139,12 @@ class MovableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&     //    top > bottom =>   Collision bottom
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&       //     left > right =>   Collision behind
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
+    isCollidingTop(mo) {
+        if (this.isColliding(mo) && this.isAboveGround()) {
+            return true;
+        }
     }
 
 

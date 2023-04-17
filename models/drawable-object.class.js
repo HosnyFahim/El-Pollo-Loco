@@ -6,7 +6,7 @@ class DrawableObject {
     x = 120;
     y = 280;
     width = 100;
-    height = 150;
+    height = 120;
 
     /**
     * It creates a new image object, and sets the source of that image to the path that was passed in
@@ -62,7 +62,7 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'red';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top,(this.x + this.width - this.offset.right) - (this.x + this.offset.left),(this.y + this.height - this.offset.right) - (this.y + this.offset.top));
+            ctx.rect(this.x + 20, this.y + 80, this.width - 40, this.height - 90);
             ctx.stroke();
         }
     }

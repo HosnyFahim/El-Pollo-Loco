@@ -1,5 +1,3 @@
-
-
 /* It creates a class called Chicken that inherits from MovableObject. */
 class Chicken extends MovableObject {
     x = 120;
@@ -36,7 +34,7 @@ class Chicken extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD_CHICKEN);
+                chickenDead();
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }

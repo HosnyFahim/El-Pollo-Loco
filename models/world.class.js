@@ -1,5 +1,3 @@
-
-
 /* Creating a new instance of the World class. */
 class World {
     character = new Character();
@@ -42,7 +40,8 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObject();
-            this.enemyCharacterColision();
+            this.normalCickenCharacterColision();
+            this.smallCickenCharacterColision();
         }, 200);
     }
 
@@ -63,7 +62,7 @@ class World {
         });
     }
 
-    enemyCharacterColision() {
+    normalCickenCharacterColision() {
         this.setFalling();
         this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingTop(enemy) && this.isDecreasing(this.oldValue, this.newValue)) {
@@ -76,8 +75,26 @@ class World {
                 this.character.hitCharacter();
                 this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
 
-            } console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
+            }
+            console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
         });
+    }
+
+    smallCickenCharacterColision() {
+        this.setFalling();
+        this.level.smallEnemys.forEach((smallEnemy) => {
+            if (this.character.isCollidingTop(smallEnemy) && this.isDecreasing(this.oldValue, this.newValue)) {
+                this.character.jump();
+                smallEnemy.dead = true;
+                setTimeout(() => {
+                    this.deletSmallEnemyForomArray(this.level.smallEnemys, smallEnemy)
+                }, 500);
+            } else if (this.character.isColliding(smallEnemy)) {
+                this.character.hitCharacter();
+                this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
+
+            }
+        })
     }
 
     checkThrowObject() {
@@ -107,6 +124,11 @@ class World {
         this.level.enemies.splice(i, 1);
     }
 
+    deletSmallEnemyFromArray(smallEnemy) {
+        let i = this.level.smallEnemys.indexOf(smallEnemy);
+        this.level.smallEnemys.splice(i, 1);
+    }
+
 
     /* Drawing the character, enemies, and clouds. */
     draw() {
@@ -115,6 +137,7 @@ class World {
         this.addObjectToMap(this.level.backgroundObjects);
         this.addObjectToMap(this.level.clouds);
         this.addObjectToMap(this.level.enemies);
+        this.addObjectToMap(this.level.smallEnemys);
         this.addObjectToMap(this.level.endboss);
         this.addObjectToMap(this.level.bottles);
         this.addObjectToMap(this.level.coins);
@@ -126,12 +149,12 @@ class World {
         this.addToMap(this.StatusBarBottle);
         this.addToMap(this.StatusBarEndBossHealth);
         this.addToMap(this.StatusBarEndBossIcon);
-        this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
+        this.ctx.translate(this.camera_x, 0); // --------- Forwards ----------- //
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         /* Calling the draw function again. */
         self = this;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
             self.draw();
         });
     }
@@ -214,4 +237,3 @@ class World {
     }
 
 }
-

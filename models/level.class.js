@@ -5,25 +5,17 @@ class Level {
     endboss;
     clouds;
     backgroundObjects;
+    coins;
     bottles;
-    coins; 
-    level_end_x = 720*7;
+    levelEndX = 4100;
 
-/**
- * This function takes in 5 arrays and assigns them to the properties of the object that is being
- * created.
- * @param enemies - an array of enemy objects
- * @param clouds - an array of objects that are clouds
- * @param backgroundObjects - An array of objects that are in the background.
- * @param bottles - Array of bottle objects
- * @param coins - Array of coin objects
- */
-    constructor(enemies, endboss, clouds, backgroundObjects, bottles, coins) {
+
+    constructor(enemies, endboss, clouds, backgroundObjects, coins, bottles) {
         this.enemies = enemies;
         this.endboss = endboss;
         this.clouds = clouds;
         this.backgroundObjects = backgroundObjects;
-        this.bottles = bottles;
         this.coins = coins;
+        this.bottles = bottles;
     }
 }

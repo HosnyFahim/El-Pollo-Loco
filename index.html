@@ -2,65 +2,250 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset=" UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="icons/favicon.png">
-    <title>El_Pollo_Loco</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/fonts.css">
+    <title>El Pollo Loco</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="shortcut icon" href="icons/sombrero.png">
+
     <script src="models/world.class.js"></script>
     <script src="models/keyboard.class.js"></script>
+    <script src="js/game.js"></script>
     <script src="models/level.class.js"></script>
+    <script src="levels/level1.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
-    <script src="models/statusBar-object.class.js"></script>
-    <script src="models/statusBar-health.class.js"></script>
-    <script src="models/statusBar-coin.class.js"></script>
-    <script src="models/statusBar-bottle.class.js"></script>
-    <script src="models/statusBar-endBoss-icon.class.js"></script>
-    <script src="models/statusBar-endboss-health.class.js"></script>
+    <script src="models/statusbar-object.class.js"></script>
+    <script src="models/statusbar-health.class.js"></script>
+    <script src="models/statusbar-coin.class.js"></script>
+    <script src="models/statusbar-bottle.class.js"></script>
+    <script src="models/statusbar-endboss-health.class.js"></script>
+    <script src="models/statusbar-icon-endboss.class.js"></script>
+    <script src="models/coin.class.js"></script>
+    <script src="models/bottle.class.js"></script>
+    <script src="models/throwable-object.class.js"></script>
     <script src="models/character.class.js"></script>
-    <script src="models/chicken.class.js"></script>
+    <script src="models/normal-chicken.class.js"></script>
     <script src="models/small-chicken.class.js"></script>
     <script src="models/cloud.class.js"></script>
     <script src="models/background-object.class.js"></script>
-    <script src="models/bottle.class.js"></script>
-    <script src="models/coin.class.js"></script>
     <script src="models/endboss.class.js"></script>
-    <script src="models/throwable-object.class.js"></script>
-    <script src="levels/level_1.js"></script>
-    <script src="js/game.js"></script>
-
 </head>
 
-<body onload="init()">
+<body>
     <h1>El Pollo Loco</h1>
-    <div class="position-relative" id="fullScreen">
-        <canvas id="canvas" width="720px" height="480px"></canvas>
-        <img onclick="turnSoundOff()" class="soundOff" id="sound-off" src="icons/soundoff.png">
-        <img onclick="turnSoundOn()" class="soundOn d-none" id="sound-on" src="icons/soundon.png">
-        <img onclick="turnFullScreenOn()" class="fullScreen" id="fullScreen-on" src="icons/fullscreen.png">
-        <img onclick="turnFullScreenOff()" class="closeFullScreen d-none" id="fullScreen-off"
-            src="icons/closfullscrenn.png">
-        <div class="positionLeft">
-            <div class="border">
-                <img class="imgBack" src="icons/back.png">
-            </div>
-            <div class="border">
-                <img class="imgForward" src="icons/forward.png">
-            </div>
-        </div>
-        <div class="positionRight">
-            <div class="border">
-                <img class="imgJump" src="icons/jump.png">
-            </div>
-            <div class="border">
-                <img class="imgBottle" src="icons/bottle.svg">
-            </div>
-        </div>
-    </div>
 
+    <div>
+
+
+
+        <div class="positionRelative" id="fullScreen">
+
+
+            <canvas width="820" height="480" id="canvas" class="d-none">
+
+            </canvas>
+
+
+            <!--Sound Btns-->
+            <img src="icons/audioOnIcon.png" class="audioOnIcon d-none" onclick="turnSoundOn()" id="audioOnIcon">
+            <img src="icons/audioOffIcon.png" class="audioOffIcon d-none" onclick="turnSoundOff()" id="audioOffIcon">
+            <!--Sound Btns-->
+
+
+            <!--Fullscreen Btns-->
+            <img src="icons/enterFullscreenIcon.png" class="enterFullscreenIcon d-none" onclick="openFullscreen()"
+                id="enterFullscreenIcon">
+            <img src="icons/exitFullscreenIcon.png" class="exitFullscreenIcon d-none" onclick="closeFullscreen()"
+                id="exitFullscreenIcon">
+            <!--Fullscreen Btns-->
+
+
+            <!--Mobile Buttons-->
+            <div class="positionAbsoluteLeft d-none" id="positionAbsoluteLeft">
+                <img src="icons/arrowLeftMobile.png" class="btnMobile" id="btnMobileLeft">
+                <img src="icons/arrowRightMobile.png" class="btnMobile" id="btnMobileRight">
+            </div>
+            <div class="positionAbsoluteRight d-none" id="positionAbsoluteRight">
+                <img src="icons/arrowUpMobile.png" class="btnMobile" id="btnMobileUp">
+                <img src="icons/arrowThrowMobile.png" class="btnMobile" id="btnMobileThrow">
+            </div>
+            <!--Mobile Buttons-->
+
+
+            <!--Start Screen-->
+            <div class="startScreenContainer">
+                <div class="startbtnsContainer">
+                    <img src="img/9_intro_outro_screens/start/startscreen_2.png" class="startScreen" id="startScreen">
+                    <div>
+                        <img src="icons/play.png" class="btnPlay" onclick="startGame()" id="btnPlay">
+                    </div>
+                    <div>
+                        <img src="icons/info.png" class="infoIcon" onclick="openGameDescription()" id="infoIcon">
+                    </div>
+                    <div>
+                        <img src="icons/control.png" class="steeringIcon" onclick="openSteeringMenu()"
+                            id="steeringIcon">
+                    </div>
+                </div>
+            </div>
+            <!--Start Screen-->
+
+
+            <!--Win Screen-->
+            <div class="winScreenContainer d-none" id="winScreenContainer">
+                <h2>Congratulations You Win !</h2>
+                <div class="imgTrophyContainer">
+                    <img src="img/winImg.png">
+                </div>
+                <div class="btnContainer">
+                    <button onclick="restartGame()" id="btnRestartWinScreen" class="btnRestart">Restart
+                        Game</button>
+                    <button onclick="goBackToStartScreen()" id="btnMainMenuWinScreen" class="btnMainMenu">Main
+                        Menu</button>
+                </div>
+            </div>
+            <!--Win Screen-->
+
+
+            <!--Gameover Screen-->
+            <div class="gameOverScreenContainer d-none" id="gameOverScreenContainer">
+                <img src="img/9_intro_outro_screens/game_over/you lost.png" class="gameOverScreen" id="gameOverScreen">
+                <div class="btnContainer">
+                    <button onclick="restartGame()" id="btnRestartGameOverScreen" class="btnRestart">Restart
+                        Game</button>
+                    <button onclick="goBackToStartScreen()" id="btnMainMenuGamOverScreen" class="btnMainMenu">Main
+                        Menu</button>
+                </div>
+            </div>
+            <!--Gameover Screen-->
+
+
+            <!--Loading Screen-->
+            <div class="loadingScreenContainer hide" id="loadingScreenContainer">
+                <div class="containerWithTextAndIcon">
+                    <div class="spinner"></div>
+                    <h2 style="color: #ff9f00; letter-spacing: 4px;">Loading...</h2>
+                </div>
+            </div>
+            <!--Loading Screen-->
+
+
+        </div>
+
+
+
+
+
+        <!--Steering Menu-->
+        <div class="containerGameControlls d-none" id="containerGameControlls">
+            <div class="border-absolute">
+                <img src="icons/back.png" class="arrowBack" onclick="closeSteeringMenu()" id="arrowBackGameControlls">
+            </div>
+
+
+            <h2>Game Controlls</h2>
+
+
+            <table>
+
+                <tr>
+                    <td>
+                        <div class="border">
+                            <img class="keyboardButton" src="icons/back.png">
+                        </div>
+                    </td>
+                    <td>
+                        <p class="keyboardIcon">
+                            Pepe Move Left
+                        </p>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="border">
+                            <img class="keyboardButton" src="icons/forward.png" style="padding-left: 5px;">
+                        </div>
+                    </td>
+                    <td>
+                        <p class="keyboardIcon">
+                            Pepe Move Right
+                        </p>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="border" style="font-size: 20px; color: black;">
+                            SPACE
+                        </div>
+                    </td>
+                    <td>
+                        <p class="keyboardIcon">
+                            Pepe Jump
+                        </p>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="border" style="font-size: 30px; color: black;">
+                            S
+                        </div>
+                    </td>
+                    <td>
+                        <p class="keyboardIcon">
+                            Pepe Throw Bottle
+                        </p>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <!--Steering Menu-->
+
+
+        <!--Game Description Menu-->
+        <div class="containerGameDescription d-none" id="containerGameDescription">
+            <div class="border-absolute">
+                <img src="icons/back.png" class="arrowBack" onclick="closeGameDescription()"
+                    id="arrowBackGameDescription">
+            </div>
+
+
+            <h2>Game Description</h2>
+
+
+            <span>
+                The little Mexican Pepe want to be his taco back.
+                <br>
+                The evil big Chicken has stolen the Taco.
+                <br>
+                <br>
+                He want his Taco back.
+                <br>
+                Go to the evil big Chicken and retrieve his Taco.
+                <br>
+                <br>
+                Jump on the litle Chicken to defeat the Chicken.
+                <br>
+                Collect the Bottles and Throw they against the big Chicken to defeat him.
+                <br>
+                So you can get the tako in time for lunch.
+                <br>
+                <br>
+                Good luck and have Fun with this Game.
+            </span>
+        </div>
+        <!--Game Description Menu-->
 </body>
 
 </html>

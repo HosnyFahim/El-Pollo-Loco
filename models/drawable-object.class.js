@@ -1,91 +1,129 @@
 
 class DrawableObject {
+    x = 30;
+    y = 230;
+    width = 40;
+    height = 70;
     img;
-    imageCache = {};
-    currentImages = 0;
-    x = 120;
-    y = 280;
-    width = 100;
-    height = 120;
+    imgCache = {};
+    currentImage = 0;
+
 
     /**
-    * It creates a new image object, and sets the source of that image to the path that was passed in
-    * @param path - The path to the image file.
-    */
+     * This Function is used to load the Current Image Path. 
+     * 
+     * @param {string} path - The Current Image Path. 
+     */
     loadImage(path) {
-        this.img = new Image();  // this.img = document.getElementById('image) <img id = "image" src = "path"/>
+        this.img = new Image();
         this.img.src = path;
     }
 
+
     /**
-    * It takes an array of image paths, creates a new image object for each path, sets the source of the
-    * image to the path, and then adds the path to the imageCache object.
-    * @param arr - An array of image paths
-    */
-    loadImages(arr) {
-        arr.forEach((path) => {
+     * This Function load the Images from the Current Array.
+     * 
+     * @param {string} arrayImages - The Images from the Current Array. 
+     */
+    loadImages(arrayImages) {
+        arrayImages.forEach(path => {
             let img = new Image();
             img.src = path;
-            this.imageCache[path] = img;
+            this.imgCache[path] = img;
         });
     }
 
+
     /**
-    *
-    *
-    * @param {*} ctx
-    * @memberof MovableObject
-    */
+     * This Function is used to draw the Elements on the Canvas, with a try catch command.
+     * 
+     * @param {string} ctx - The context to draw Elements on the Canvas. 
+     */
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    /**
-    *
-    * It draws a blue rectangle around the character
-    * @param {*} ctx
-    * @memberof MovableObject
-    */
-
-    drawFrame(ctx) {
-        if (this instanceof Chicken || this instanceof SmallChicken || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        } catch (error) {
+            console.warn('Image could not loaded', error);
+            console.log(this.img.src);
         }
-    }
 
-    drawFrameCharacter(ctx) {
-        if (this instanceof Character) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x + 20, this.y + 80, this.width - 40, this.height - 90);
-            ctx.stroke();
-        }
-    }
-
-    drawFrameBottle(ctx) {
-        if (this instanceof Bottle) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + 35, this.y + 20, this.width - 60, this.height - 30);
-            ctx.stroke();
-        }
-    }
-
-    drawFrameCoin(ctx) {
-        if (this instanceof Coin) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + 30, this.y + 30, this.width - 60, this.height - 60);
-            ctx.stroke();
-        }
     }
 
 
+    // drawFrameCharacter(ctx) {
+    //     if (this instanceof Character) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'blue';
+    //         ctx.rect(this.x + 15, this.y + 80, this.width - 30, this.height - 90);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+    // drawFrameCoins(ctx) {
+    //     if (this instanceof Coin) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'green';
+    //         ctx.rect(this.x + 28, this.y + 28, this.width - 55, this.height - 55);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+    // drawFrameBottles(ctx) {
+    //     if (this instanceof Bottle) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'green';
+    //         ctx.rect(this.x + 30, this.y + 15, this.width - 55, this.height - 25);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+
+    // drawFrameThrowableBottle(ctx) {
+    //     if (this instanceof ThrowableObject) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'green';
+    //         ctx.rect(this.x + 30, this.y + 20, this.width - 60, this.height - 50);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+    // drawFrameChickenNormal(ctx) {
+    //     if (this instanceof NormalChicken) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'red';
+    //         ctx.rect(this.x + 2.5, this.y + 2.5, this.width - 5, this.height - 5);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+    // drawFrameChickenSmall(ctx) {
+    //     if (this instanceof SmallChicken) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'red';
+    //         ctx.rect(this.x + 2.5, this.y + 2.5, this.width - 5, this.height - 5);
+    //         ctx.stroke();
+    //     }
+    // }
+
+
+    // drawFrameEnboss(ctx) {
+    //     if (this instanceof Endboss) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'red';
+    //         ctx.rect(this.x + 90, this.y + 120, this.width - 150, this.height - 200);
+    //         ctx.stroke();
+    //     }
+    // }
 }

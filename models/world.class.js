@@ -1,190 +1,110 @@
 
-
-/* Creating a new instance of the World class. */
 class World {
     character = new Character();
-    StatusBarHealth = new StatusBarHealth();
-    StatusBarCoin = new StatusBarCoin();
-    StatusBarBottle = new StatusBarBottle();
-    StatusBarEndBossIcon = new StatusBarEndBossIcon();
-    StatusBarEndBossHealth = new StatusBarEndBossHealth();
-    throwableObjects = [];
+    statusbarHealth = new StatusbarHealth();
+    statusbarCoin = new StatusbarCoin();
+    statusbarBottle = new StatusbarBottle();
+    statusbarEndbossHealth = new StatusbarEnbossHealth();
+    statusbarIconEndboss = new StatusbarIconEndboss();
+    throwableObject = [];
+    maxBottlesToThrow = 0;
     level = level1;
     canvas;
     ctx;
     keyboard;
-    camera_x = 0;
+    cameraX = 0;
+    intervalIds = [];
 
 
-    /**
-     * The constructor function is called when the object is created, and it sets the canvas context, the
-     * canvas, the keyboard, and then calls the draw and setWorld functions.
-     * @param canvas - The canvas element
-     * @param keyboard - This is the keyboard object that we created earlier.
-     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.setWorld();
-        this.run();
+        this.setWorldWithCharacter();
+        this.checkCollisionsWithMo();
+        this.checkCollisionsWithThrowingBottle();
     }
+
 
     /**
-     * It sets the world of the character to the world
+     * This Function draw all Elements in the Canvas.
+     * 
      */
-    setWorld() {
-        this.character.world = this;
-    }
-
-    run() {
-        setInterval(() => {
-            this.checkCollisions();
-            this.checkThrowObject();
-            this.enemyCharacterColision();
-        }, 200);
-    }
-
-    checkCollisions() {
-        this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
-                this.character.collectCoin();
-                this.coinCollected(coin);
-                this.StatusBarCoin.setPercentage(this.character.coins, this.character.maxCoins);
-            }
-        });
-        this.level.bottles.forEach((bottles) => {
-            if (this.character.isColliding(bottles)) {
-                this.character.collectBottle();
-                this.bottleCollected(bottles);
-                this.StatusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
-            }
-        });
-    }
-
-    enemyCharacterColision() {
-        this.setFalling();
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isCollidingTop(enemy) && this.isDecreasing(this.oldValue, this.newValue)) {
-                this.character.jump();
-                enemy.dead = true;
-                setTimeout(() => {
-                    this.deletEnemyFromArray(this.level.enemies, enemy);
-                }, 500);
-            } else if (this.character.isColliding(enemy)) {
-                this.character.hitCharacter();
-                this.StatusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy);
-
-            } console.log('collision with Character, energy', this.character.energy, this.character.maxEnergy);
-        });
-    }
-
-    checkThrowObject() {
-        if (this.keyboard.S && this.character.bottles > 0) {
-            let throwableBottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(throwableBottle);
-            this.character.bottles--;
-            this.StatusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
-        }
-    }
-
-
-
-    coinCollected(coin) {
-        let i = this.level.coins.indexOf(coin);
-        this.level.coins.splice(i, 1);
-    }
-
-    bottleCollected(bottles) {
-        let i = this.level.bottles.indexOf(bottles);
-        this.level.bottles.splice(i, 1);
-        this.maxBottlesToThrow++;
-    }
-
-    deletEnemyFromArray(enemy) {
-        let i = this.level.enemies.indexOf(enemy);
-        this.level.enemies.splice(i, 1);
-    }
-
-
-    /* Drawing the character, enemies, and clouds. */
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.camera_x, 0);
-        this.addObjectToMap(this.level.backgroundObjects);
-        this.addObjectToMap(this.level.clouds);
-        this.addObjectToMap(this.level.enemies);
-        this.addObjectToMap(this.level.endboss);
-        this.addObjectToMap(this.level.bottles);
-        this.addObjectToMap(this.level.coins);
-        this.addObjectToMap(this.throwableObjects);
-        this.ctx.translate(-this.camera_x, 0);
-        // --------- Space for fixed Objects -------- //
-        this.addToMap(this.StatusBarHealth);
-        this.addToMap(this.StatusBarCoin);
-        this.addToMap(this.StatusBarBottle);
-        this.addToMap(this.StatusBarEndBossHealth);
-        this.addToMap(this.StatusBarEndBossIcon);
-        this.ctx.translate(this.camera_x, 0);  // --------- Forwards ----------- //
+        this.clearCanvas();
+        this.ctx.translate(this.cameraX, 0); // ===> Move the Map Forward.
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+        this.ctx.translate(-this.cameraX, 0); // ===> Move the Map Backward.
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoin);
+        this.addToMap(this.statusbarBottle);
+        this.addToMap(this.statusbarEndbossHealth);
+        this.addToMap(this.statusbarIconEndboss);
+        this.ctx.translate(this.cameraX, 0); // ===> Move the Map Forward.
         this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0);
-        /* Calling the draw function again. */
-        self = this;
-        requestAnimationFrame(function () {
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.throwableObject);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+        this.ctx.translate(-this.cameraX, 0); // ===> Move the Map Backward.
+        let self = this;                         // Variable mit dem Wert "this" wird definiert, da "this" nicht mehr in der requestAnimationFrame Funktion erkannt wird.          
+        requestAnimationFrame(() => {           // draw() wird durch requestAnimationFrame() mehrmals hintereinander aufgerufen.  
             self.draw();
         });
     }
 
+
     /**
-     * For each object in the array, add it to the map.
-     * @param objects - An array of objects to add to the map.
+     * This Function Clear the whole Canvas.
+     * 
      */
-    addObjectToMap(objects) {
-        objects.forEach(o => {
-            this.addToMap(o);
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+
+    /**
+     * This Function add the objects from the Arrays to Map.   
+     * 
+     * @param {string} objects - These are the objects added from the corresponding Arrays.
+     */
+    addObjectsToMap(objects) {
+        objects.forEach(object => {
+            this.addToMap(object);
         });
     }
 
 
     /**
-     * "If the object has a property called otherDirection, flip the image, draw it, then flip it back."
+     * This Function add the MovableObject to Map.
      * 
-     * The function is called by the following code:
-     * @param mo - the object to be drawn
+     * @param {string} mo - This is the MovableObject for example Character Class or Enboss Class.
      */
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.flipImage(mo);
+            this.flipImage(mo);   // ===> Mirror the Character.
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
-            this.flipImageBack(mo);
+            this.flipImageBack(mo);  // ===> Turn around the Character.
         }
-        mo.drawFrameCharacter(this.ctx);
-        mo.drawFrameBottle(this.ctx);
-        mo.drawFrameCoin(this.ctx);
-
-
+        // mo.drawFrameCharacter(this.ctx);
+        // mo.drawFrameCoins(this.ctx)
+        // mo.drawFrameBottles(this.ctx);
+        // mo.drawFrameThrowableBottle(this.ctx);
+        // mo.drawFrameChickenNormal(this.ctx);
+        // mo.drawFrameChickenSmall(this.ctx);
+        // mo.drawFrameEnboss(this.ctx);
     }
 
+
     /**
-     * "The function flips the image by translating the canvas to the width of the image, scaling the
-     * canvas by -1, and then setting the x position of the image to the negative of the x position of the
-     * image."
+     * This Function mirror the Character Class.   
      * 
-     * The first line of the function saves the canvas state. This is important because we are going to be
-     * changing the canvas state. We want to be able to restore the canvas state to what it was before we
-     * changed it.
-     * 
-     * The second line of the function translates the canvas to the width of the image. This is important
-     * because we want to flip the image around the center of the image. If we don't translate the canvas
-     * to the width of the image, the image will be flipped around the left edge of the canvas.
-     * 
-     * The third line of the function scales the canvas by -1. This is important because we want to flip
-     * the image. If we don't scale the canvas by -1,
-     * @param mo - the object to be drawn
+     * @param {string} mo - This is the MovableObject for example Character Class or Enboss Class.
      */
     flipImage(mo) {
         this.ctx.save();
@@ -193,25 +113,221 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
     /**
-     * This function flips the image back to its original orientation.
-     * @param mo - the object you want to flip
+     * This Function turn around the Character Class.   
+     * 
+     * @param {string} mo - This is the MovableObject for example Character Class or Enboss Class.
      */
     flipImageBack(mo) {
-        mo.x = mo.x * -1;
         this.ctx.restore();
+        mo.x = mo.x * -1;
     }
 
-    isDecreasing(oldValue, newValue) {
-        return oldValue < newValue;
+
+    /**
+     * This Function link the World Class with the Character Class.
+     * 
+     */
+    setWorldWithCharacter() {
+        this.character.world = this;
     }
 
-    setFalling() {
-        this.newValue = this.character.y;
+
+    /**
+     * This Function asks general all Collisions.
+     *  
+     */
+    checkCollisionsWithMo() {
+        setStopableInterval(() => {
+            this.checkCollisionsChicken();
+            this.checkCollisionsEndboss();
+            this.checkCollectedCoins();
+            this.checkCollectedBottles();
+        }, 1000 / 25);
+    }
+
+
+    /**
+     * This Function asks general all Collisions with the Throwing Bottle.
+     */
+    checkCollisionsWithThrowingBottle() {
+        setStopableInterval(() => {
+            this.checkThrowObjects();
+            this.checkCollisionWithBottleEndboss();
+        }, 230);
+    }
+
+
+    /**
+     * This Function asks the Collisions with the Chicken Enemies.
+     * 
+     */
+    checkCollisionsChicken() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy) && !this.character.isHurtCharacter()) {
+                if (this.character.isAboveGround()) {
+                    this.killChickenWithJumpFromTop(enemy);
+                } else {
+                    this.character.hitCharacter()
+                    this.statusbarHealth.setPercentage(this.character.energy);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * This Function kill the Chicken as soon as Jump on the Chicken. (Like in Super Mario).
+     * 
+     * @param {string} enemy - This is the Current enemy in the Array.
+     */
+    killChickenWithJumpFromTop(enemy) {
+        enemy.chickenKilled();
+        this.character.speedY = 30;
+        audioDeadChicken.play();
+        audioDeadChicken.volume = 0.3
         setTimeout(() => {
-            this.oldValue = this.character.y;
-        }, 500);
+            this.eraseEnemyFromArray(enemy);
+        }, 750);
     }
 
+
+    /**
+     * This Function Check only Collisions with the Enboss.
+     * 
+     */
+    checkCollisionsEndboss() {
+        this.level.endboss.forEach(endboss => {
+            if (this.character.isColliding(endboss)) {
+                this.character.hitCharacter();
+                this.statusbarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+    /**
+     * This Function Check only Collisions with the Coins, to Collect them.
+     * 
+     */
+    checkCollectedCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isCollected(coin)) {
+                this.coinCollected(coin);
+                this.character.raiseProgressbarCoin();
+                audioCoinCollected.play();
+                this.statusbarCoin.setPercentage(this.character.progessCoinBar);
+            }
+        });
+    }
+
+
+    /**
+     * This Function Check the index, in the coins Array.
+     * 
+     * @param {string} coin - This is the Current coin in the Array. 
+     */
+    coinCollected(coin) {
+        let i = this.level.coins.indexOf(coin);
+        this.level.coins.splice(i, 1);
+    }
+
+
+    /**
+     * This Function Check only Collisions with the Bottles, to Collect them.
+     * 
+     */
+    checkCollectedBottles() {
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isCollected(bottle)) {
+                this.bottleCollected(bottle);
+                this.character.raiseProgressbarBottle();
+                audioBottleCollected.play();
+                this.statusbarBottle.setPercentage(this.character.progessBottleBar);
+            }
+        });
+    }
+
+
+    /**
+    * This Function Check the index, in the bottles Array.
+    * 
+    * @param {string} bottle - This is the Current bottle in the Array. 
+    */
+    bottleCollected(bottle) {
+        let i = this.level.bottles.indexOf(bottle);
+        this.level.bottles.splice(i, 1);
+        this.maxBottlesToThrow++;
+    }
+
+
+    /**
+     * This Function is used to Throw the bottles. 
+     */
+    checkThrowObjects() {
+        if (this.keyboard.a && this.maxBottlesToThrow > 0) {
+            let bottle = new ThrowableObject(this.character.x, this.character.y, this.character.otherDirection);
+            this.throwableObject.push(bottle);
+            audioThrowBottle.play();
+            this.maxBottlesToThrow--;
+            this.character.reduceProgressbarBottleThroughThrow();
+            this.statusbarBottle.setPercentage(this.character.progessBottleBar);
+        }
+    }
+
+
+    /**
+    * This Function Check the Collisions, if the Bottle hit the Enboss. 
+    * 
+    */
+    checkCollisionWithBottleEndboss() {
+        this.throwableObject.forEach((bottle) => {
+            this.level.endboss.forEach(endboss => {
+                if (bottle.isColliding(endboss)) {
+                    endboss.hitEndboss(endboss.energy);
+                    this.playSoundEnbossHit();
+                    this.statusbarEndbossHealth.setPercentage(world.level.endboss[0].energy);
+                    setTimeout(() => {
+                        this.eraseThrowingBottleFromArray(bottle);
+                    }, 180);
+                }
+            });
+        });
+    }
+
+
+    /**
+     * This Function Play Sound, if Bottle Colliding with the Enboss Class.
+     * 
+     */
+    playSoundEnbossHit() {
+        audioSplashBottle.volume = 0.2;
+        audioSplashBottle.play();
+        audioDeadChicken.volume = 0.3;
+        audioDeadChicken.play();
+    }
+
+
+    /**
+     * This Function erase the current enemy from the Array.
+     * 
+     * @param {string} enemy - This is the Current enemy from the Array. 
+     */
+    eraseEnemyFromArray(enemy) {
+        let i = this.level.enemies.indexOf(enemy);
+        this.level.enemies.splice(i, 1);
+    }
+
+
+    /**
+    * This Function erase the current throwing Bottle from the Array.
+    * 
+    * @param {string} bottle - This is the Current bottle from the Array. 
+    */
+    eraseThrowingBottleFromArray(bottle) {
+        let i = this.throwableObject.indexOf(bottle);
+        this.throwableObject.splice(i, 1);
+    }
 }
 

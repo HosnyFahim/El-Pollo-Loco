@@ -1,11 +1,10 @@
 
 
 class Cloud extends MovableObject {
-    y = 20;
-    x = 20;
-    width = 500;
-    height = 250;
-    speed = 0.15;
+    y = 0;
+    width = 400;
+    height = 350;
+    speed = 0.20;
 
 
     constructor(imagePath, x) {
@@ -15,15 +14,12 @@ class Cloud extends MovableObject {
     }
 
     /**
-     * Every 60th of a second, subtract 0.1 from the x property of the object.
+     * This Function Animate the Cloud Class.
+     * 
      */
     animateClouds() {
-        this.moveLeft();
-    }
-
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        setStopableInterval(() => {
+            this.moveLeft();
+        }, 15);
     }
 }

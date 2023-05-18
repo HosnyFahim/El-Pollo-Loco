@@ -1,11 +1,11 @@
 class Bottle extends MovableObject {
-    x = 120;
-    y = 320;
     width = 100;
-    height = 100;
+    height = 80;
 
-    constructor(imagePath) {
-        super().loadImage(imagePath);
-        this.x = 700 + Math.random() * 4000;
+
+    constructor(imagePath, y) {
+        super().loadImage(imagePath, y);
+        this.x = 600 + Math.random() * 2000;
+        this.y = y;
     }
-} 
+}

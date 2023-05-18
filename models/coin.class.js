@@ -1,7 +1,7 @@
 class Coin extends MovableObject {
     width = 100;
     height = 100;
-    IMAGES_COINS = [
+    imagesCoins = [
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png'
     ];
@@ -11,18 +11,25 @@ class Coin extends MovableObject {
         left: 0,
         right: 0,
     }
+    intervalIds = [];
+
 
     constructor(imagePath) {
         super().loadImage(imagePath);
-        this.loadImages(this.IMAGES_COINS);
-        this.x = 500 + Math.random() * 4000;
-        this.y = 70 + Math.random() * 70;
+        this.x = 300 + Math.random() * 3500;
+        this.y = 100 + Math.random() * 70;
+        this.loadImages(this.imagesCoins);
         this.animateCoins();
     }
 
+
+    /**
+     * This Function Animate the Coins.
+     * 
+     */
     animateCoins() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_COINS);
-        }, 200);
+        setStopableInterval(() => {
+            this.playAnimationMo(this.imagesCoins)
+        }, 350);
     }
 }

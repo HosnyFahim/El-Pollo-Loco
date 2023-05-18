@@ -1,4 +1,3 @@
-
 class SmallChicken extends MovableObject {
     x = 120;
     y = 365;

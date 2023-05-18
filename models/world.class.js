@@ -1,4 +1,3 @@
-
 class World {
     character = new Character();
     statusbarHealth = new StatusbarHealth();

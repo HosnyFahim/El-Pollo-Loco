@@ -32,7 +32,7 @@ canvas {
     width: 35px;
     height: 35px;
     position: absolute;
-    top: 13px;
+    top: 9px;
     right: 15px;
 }
 
@@ -68,7 +68,6 @@ canvas {
 .startScreenContainer {
     position: relative;
     border-radius: 20px;
-    border: 1px solid rgba(131, 128, 128, 0.01);
 }
 
 
@@ -76,7 +75,6 @@ canvas {
     width: 820px;
     height: 480px;
     border-radius: 20px;
-    border: 1px solid rgba(131, 128, 128, 0.01);
 }
 
 .spinner {
@@ -108,6 +106,7 @@ canvas {
 .gameOverScreen {
     width: 820px;
     height: 480px;
+    border-radius: 20px;
     animation: scale-in-center 225ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 100ms both;
 }
 
@@ -121,17 +120,17 @@ canvas {
 
 
 .btnRestart {
-    background-color: #FFCC00;
+    background-color: #ff9f00;
     box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
     height: 50px;
     width: 240px;
     padding-left: 30px;
     padding-right: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: 'Aref Ruqaa Ink';
+    font-size: 25px;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
     animation: scale-in-center 225ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 100ms both;
 }
 
@@ -139,30 +138,30 @@ canvas {
 .btnRestart:hover {
     cursor: pointer;
     transition: all 225ms ease-in-out;
-    transform: scale(1.2);
+    background-color: #FFDE00;
 }
 
 
 .btnMainMenu {
-    background-color: #FFCC00;
+    background-color: #ff9f00;
     box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
     height: 50px;
     width: 240px;
     padding-left: 30px;
     padding-right: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: 'Aref Ruqaa Ink';
+    font-size: 25px;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
     animation: scale-in-center 225ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 100ms both;
 }
 
 
 .btnMainMenu:hover {
     cursor: pointer;
-    transition: 225ms ease-in-out;
-    transform: scale(1.2);
+    transition: all 225ms ease-in-out;
+    background-color: #FFDE00;
 }
 
 
@@ -184,7 +183,7 @@ canvas {
     width: 45px;
     height: 45px;
     position: absolute;
-    right: 65px;
+    right: 80px;
     top: 9px;
 }
 
@@ -213,19 +212,10 @@ canvas {
 
 
 .btnPlay {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 13px;
-    right: 180px;
-    filter: invert(84%) sepia(26%) saturate(5754%) hue-rotate(1deg) brightness(104%) contrast(107%);
-}
-
-
-.btnPlay:hover {
-    cursor: pointer;
-    transition: 225ms ease-in-out;
-    transform: scale(1.2);
+    width: 30px;
+    height: 30px;
+    padding-left: 6px;
+    padding-top: 2px;
 }
 
 
@@ -233,6 +223,9 @@ canvas {
     position: absolute;
     left: 10px;
     bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 
 
@@ -240,14 +233,15 @@ canvas {
     position: absolute;
     right: 10px;
     bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 
 
 .btnMobile {
     width: 40px;
     height: 40px;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 
@@ -282,7 +276,6 @@ canvas {
     align-items: center;
     position: relative;
     border-radius: 20px;
-    border: 1px solid rgba(131, 128, 128, 0.01);
     color: #ff9f00;
 }
 
@@ -298,22 +291,78 @@ canvas {
     font-size: 28px;
 }
 
-
-.steeringIcon {
-    width: 50px;
-    height: 50px;
+.playBtn {
     position: absolute;
     top: 12px;
-    right: 20px;
-    filter: invert(84%) sepia(26%) saturate(5754%) hue-rotate(1deg) brightness(104%) contrast(107%);
+    right: 55%;
+    background-color: #ff9f00;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 50px;
+    width: 80px;
+    font-size: 25px;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
 }
 
-
-.steeringIcon:hover {
+.playBtn:hover {
     cursor: pointer;
     transition: all 225ms ease-in-out;
-    transform: scale(1.2);
+    transform: scale(1.1);
+    background-color: #FFDE00;
 }
+
+.InfoBtn {
+    position: absolute;
+    top: 12px;
+    right: 29%;
+    background-color: #ff9f00;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 50px;
+    width: 80px;
+    font-size: 25px;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+}
+
+.InfoBtn:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.1);
+    background-color: #FFDE00;
+}
+
+.controlBtn {
+    position: absolute;
+    top: 12px;
+    right: 42%;
+    background-color: #ff9f00;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 50px;
+    width: 80px;
+    font-size: 25px;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+}
+
+.controlBtn:hover {
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
+    transform: scale(1.1);
+    background-color: #FFDE00;
+}
+
+
+.steeringIcon {
+    width: 30px;
+    height: 30px;
+}
+
 
 .border {
     height: 55px;
@@ -341,7 +390,7 @@ canvas {
 .border-absolute:hover {
     cursor: pointer;
     transition: all 225ms ease-in-out;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 
@@ -355,20 +404,11 @@ canvas {
 
 
 .infoIcon {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 12px;
-    right: 97px;
-    filter: invert(84%) sepia(26%) saturate(5754%) hue-rotate(1deg) brightness(104%) contrast(107%);
+    width: 30px;
+    height: 30px;
 }
 
 
-.infoIcon:hover {
-    cursor: pointer;
-    transition: all 225ms ease-in-out;
-    transform: scale(1.2);
-}
 
 
 .loadingScreenContainer {
@@ -406,8 +446,7 @@ canvas {
 
 .winScreenContainer h2 {
     font-size: 35px;
-    padding-top: 15px;
-    margin-top: 0;
+    margin: 0;
     text-align: center;
     animation: scale-in-center 225ms cubic-bezier(0.250, 0.460, 0.450, 0.940) 100ms both;
 }
@@ -416,7 +455,6 @@ canvas {
 .winScreenContainer .btnContainer {
     display: flex;
     justify-content: space-between;
-    margin-top: 90px;
 }
 
 

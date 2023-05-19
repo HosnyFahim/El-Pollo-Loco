@@ -49,8 +49,8 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.ctx.translate(-this.cameraX, 0); // ===> Move the Map Backward.
-        let self = this;                         // Variable mit dem Wert "this" wird definiert, da "this" nicht mehr in der requestAnimationFrame Funktion erkannt wird.          
-        requestAnimationFrame(() => {           // draw() wird durch requestAnimationFrame() mehrmals hintereinander aufgerufen.  
+        let self = this;
+        requestAnimationFrame(() => {
             self.draw();
         });
     }

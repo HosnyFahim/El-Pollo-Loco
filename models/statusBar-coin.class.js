@@ -1,5 +1,5 @@
 class StatusbarCoin extends Statusbar {
-    y = 60;
+    y = 40;
     imagesStatusbar = [
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',

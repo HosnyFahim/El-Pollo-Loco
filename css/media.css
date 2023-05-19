@@ -562,7 +562,7 @@
 /****************************  Only for Game Description Menu ****************************/
 @media (max-width: 820px) {
     .containerGameDescription {
-        width: 100%;
+        width: 100% !important;
     }
 }
 

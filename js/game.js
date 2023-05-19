@@ -1,19 +1,20 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let audioBackgroundMusicInGame = new Audio('audio/backgroundMusicInGame.mp3');
-let audioWalkCharacter = new Audio('audio/walkingCharacter.mp3');
-let audioJumpCharacter = new Audio('audio/jumpCharacter.mp3');
-let auidoHurtCharacter = new Audio('audio/hurtCharacter.mp3');
-let audioSleepCharacter = new Audio('audio/sleepCharacter.mp3');
-let audioGameLost = new Audio('audio/deadCharacter.mp3');
-let audioCoinCollected = new Audio('audio/coinCollected.mp3');
-let audioBottleCollected = new Audio('audio/bottleCollected.mp3');
-let audioThrowBottle = new Audio('audio/throwBottle.mp3');
+let audioBackgroundMusicInGame = new Audio('audio/background-music.mp3');
+let audioWalkCharacter = new Audio('audio/pepe_walking.mp3');
+let audioJumpCharacter = new Audio('audio/pepe_jumping.mp3');
+let auidoHurtCharacter = new Audio('audio/pepe_hurt.mp3');
+let audioSleepCharacter = new Audio('audio/pepe_sleep.mp3');
+let audioGameLost = new Audio('audio/gameLost.mp3');
+let audioCoinCollected = new Audio('audio/coin-collect.mp3');
+let audioBottleCollected = new Audio('audio/bottle-collect.mp3');
+let audioThrowBottle = new Audio('audio/bottle-throw.mp3');
 let audioSplashBottle = new Audio('audio/bottleSplash.mp3');
-let audioGameWin = new Audio('audio/soundWin.mp3');
-let audioDeadChicken = new Audio('audio/deadChicken.mp3');
-let audioBackgroundMusicEndboss = new Audio('audio/backgroundMusicEndboss.mp3');
+let audioGameWin = new Audio('audio/winner.mp3');
+let audioDeadChicken = new Audio('audio/chicken-dead.mp3');
+let audioDeadSmallChicken = new Audio('audio/smallChicken-dead.mp3');
+let audioBackgroundMusicEndboss = new Audio('audio/endboss-music.mp3');
 let intervalIds = [];
 
 
@@ -33,7 +34,7 @@ function startGame() {
         world = new World(canvas, keyboard);
         closeLoadingScreen();
         playBackgroundMusic();
-    }, 3500);
+    },);
 }
 
 
@@ -162,7 +163,7 @@ function showGameOverScreen() {
         document.getElementById('enterFullscreenIcon').classList.add('d-none');
         document.getElementById('exitFullscreenIcon').classList.add('d-none');
         resetBackgroundMusic();
-    }, 1500);
+    }, 1000);
 }
 
 
@@ -173,6 +174,7 @@ function showGameOverScreen() {
 function showWinScreen() {
     setTimeout(() => {
         document.getElementById('winScreenContainer').classList.remove('d-none');
+        document.getElementById('gameWinScreen').classList.remove('d-none');
         document.getElementById('canvas').classList.add('d-none');
         document.getElementById('audioOffIcon').classList.add('d-none');
         document.getElementById('audioOnIcon').classList.add('d-none');
@@ -181,7 +183,7 @@ function showWinScreen() {
         document.getElementById('enterFullscreenIcon').classList.add('d-none');
         document.getElementById('exitFullscreenIcon').classList.add('d-none');
         resetBackgroundMusic();
-    }, 1500);
+    }, 1000);
 }
 
 
@@ -245,6 +247,7 @@ function addStylesForFullScreen() {
     document.getElementById('canvas').classList.add('canvasFullScreen');
     document.getElementById('winScreenContainer').classList.add('winScreenContainerFullScreen', 'winScreenContainerFullScreenh2', 'imgTrophyContainerFullScreenimg');
     document.getElementById('gameOverScreen').classList.add('gameOverScreenFullScreen');
+    document.getElementById('gameWinScreen').classList.add('gameOverScreenFullScreen');
 }
 
 
@@ -276,6 +279,7 @@ function removeStylesForFullScreen() {
     document.getElementById('canvas').classList.remove('canvasFullScreen');
     document.getElementById('winScreenContainer').classList.remove('winScreenContainerFullScreen', 'winScreenContainerFullScreenh2', 'imgTrophyContainerFullScreenimg');
     document.getElementById('gameOverScreen').classList.remove('gameOverScreenFullScreen');
+    document.getElementById('gameWinScreen').classList.remove('gameOverScreenFullScreen');
 }
 
 

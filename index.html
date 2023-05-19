@@ -52,27 +52,39 @@
 
 
             <!--Sound Btns-->
-            <img src="icons/audioOnIcon.png" class="audioOnIcon d-none" onclick="turnSoundOn()" id="audioOnIcon">
+            <div class="border audioOnIcon d-none" onclick="turnSoundOn()" id="audioOnIcon">
+                <img src="icons/soundon.png" style="width: 40px;">
+            </div>
             <img src="icons/audioOffIcon.png" class="audioOffIcon d-none" onclick="turnSoundOff()" id="audioOffIcon">
             <!--Sound Btns-->
 
 
             <!--Fullscreen Btns-->
-            <img src="icons/enterFullscreenIcon.png" class="enterFullscreenIcon d-none" onclick="openFullscreen()"
-                id="enterFullscreenIcon">
-            <img src="icons/exitFullscreenIcon.png" class="exitFullscreenIcon d-none" onclick="closeFullscreen()"
-                id="exitFullscreenIcon">
+            <div class="border enterFullscreenIcon d-none" onclick="openFullscreen()" id="enterFullscreenIcon">
+                <img src="icons/fullscreen.png" style="width: 30px;">
+            </div>
+            <div class="border exitFullscreenIcon d-none" onclick="closeFullscreen()" id="exitFullscreenIcon">
+                <img src="icons/closfullscrenn.png" style="width: 30px;">
+            </div>
             <!--Fullscreen Btns-->
 
 
             <!--Mobile Buttons-->
             <div class="positionAbsoluteLeft d-none" id="positionAbsoluteLeft">
-                <img src="icons/arrowLeftMobile.png" class="btnMobile" id="btnMobileLeft">
-                <img src="icons/arrowRightMobile.png" class="btnMobile" id="btnMobileRight">
+                <div class="border">
+                    <img src="icons/back.png" style="padding-left: 16px;" class="btnMobile" id="btnMobileLeft">
+                </div>
+                <div class="border">
+                    <img src="icons/forward.png" class="btnMobile" id="btnMobileRight">
+                </div>
             </div>
             <div class="positionAbsoluteRight d-none" id="positionAbsoluteRight">
-                <img src="icons/arrowUpMobile.png" class="btnMobile" id="btnMobileUp">
-                <img src="icons/arrowThrowMobile.png" class="btnMobile" id="btnMobileThrow">
+                <div class="border">
+                    <img src="icons/jump.png" class="btnMobile" id="btnMobileUp">
+                </div>
+                <div class="border">
+                    <img src="icons/bottle.svg" class="btnMobile" id="btnMobileThrow">
+                </div>
             </div>
             <!--Mobile Buttons-->
 
@@ -81,16 +93,15 @@
             <div class="startScreenContainer">
                 <div class="startbtnsContainer">
                     <img src="img/9_intro_outro_screens/start/startscreen_2.png" class="startScreen" id="startScreen">
-                    <div>
-                        <img src="icons/play.png" class="btnPlay" onclick="startGame()" id="btnPlay">
-                    </div>
-                    <div>
-                        <img src="icons/info.png" class="infoIcon" onclick="openGameDescription()" id="infoIcon">
-                    </div>
-                    <div>
-                        <img src="icons/control.png" class="steeringIcon" onclick="openSteeringMenu()"
-                            id="steeringIcon">
-                    </div>
+                    <button class="playBtn" onclick="startGame()" id="btnPlay">
+                        <img src="icons/play.png" class="btnPlay">
+                    </button>
+                    <button class="InfoBtn" onclick="openGameDescription()" id="infoIcon">
+                        <img src="icons/info.png" class="infoIcon">
+                    </button>
+                    <button class="controlBtn" onclick="openSteeringMenu()" id="steeringIcon">
+                        <img src="icons/control.png" class="steeringIcon">
+                    </button>
                 </div>
             </div>
             <!--Start Screen-->
@@ -98,13 +109,11 @@
 
             <!--Win Screen-->
             <div class="winScreenContainer d-none" id="winScreenContainer">
-                <h2>Congratulations You Win !</h2>
-                <div class="imgTrophyContainer">
-                    <img src="img/winImg.png">
-                </div>
+                <img src="img/9_intro_outro_screens/game_over/game over.png" class="gameOverScreen" id="gameWinScreen">
                 <div class="btnContainer">
                     <button onclick="restartGame()" id="btnRestartWinScreen" class="btnRestart">Restart
                         Game</button>
+                    <h2>Congratulations You Win !</h2>
                     <button onclick="goBackToStartScreen()" id="btnMainMenuWinScreen" class="btnMainMenu">Main
                         Menu</button>
                 </div>
@@ -198,7 +207,7 @@
                 <tr>
                     <td>
                         <div class="border" style="font-size: 30px; color: black;">
-                            S
+                            A
                         </div>
                     </td>
                     <td>
@@ -224,22 +233,17 @@
             <h2>Game Description</h2>
 
 
-            <span>
+            <span style="text-align: center;">
                 The little Mexican Pepe want to be his taco back.
                 <br>
-                The evil big Chicken has stolen the Taco.
-                <br>
-                <br>
-                He want his Taco back.
-                <br>
-                Go to the evil big Chicken and retrieve his Taco.
+                The big Chicken has stolen the Taco.
                 <br>
                 <br>
                 Jump on the litle Chicken to defeat the Chicken.
                 <br>
                 Collect the Bottles and Throw they against the big Chicken to defeat him.
                 <br>
-                So you can get the tako in time for lunch.
+                So you can get the tako for lunch.
                 <br>
                 <br>
                 Good luck and have Fun with this Game.

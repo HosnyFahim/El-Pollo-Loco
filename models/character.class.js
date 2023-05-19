@@ -89,8 +89,8 @@ class Character extends MovableObject {
      * This Function basically Animate the Character Class.
      */
     animateCharacter() {
-        setStopableInterval(() => this.characterMove(), 1000 / 25);
-        setStopableInterval(() => this.playCharacter(), 150);
+        setStopableInterval(() => this.characterMove(), 800 / 25);
+        setStopableInterval(() => this.playCharacter(), 50);
     }
 
 
@@ -101,6 +101,10 @@ class Character extends MovableObject {
     characterMove() {
         if (this.characterCanMoveRight())
             this.characterMoveRight();
+        else {
+            audioWalkCharacter.pause();
+            audioSleepCharacter.pause();
+        }
         if (this.characterCanMoveLeft())
             this.characterMoveLeft();
         if (this.characterCanJump())
@@ -267,6 +271,10 @@ class Character extends MovableObject {
      */
     characterMoveAnimation() {
         this.playAnimationMo(this.imagesWalkingCharacter);
+    }
+
+    characterIdleAnimation() {
+        this.playAnimationMo(this.imagesIdleCharacter);
     }
 
 

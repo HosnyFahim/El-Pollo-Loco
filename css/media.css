@@ -24,6 +24,21 @@
 
 
 @media (max-width: 690px) {
+    .playBtn {
+        height: 40px;
+        width: 60px;
+    }
+
+    .controlBtn {
+        height: 40px;
+        width: 60px;
+    }
+
+    .InfoBtn {
+        height: 40px;
+        width: 60px;
+    }
+
     .audioOffIcon {
         width: 40px;
         height: 40px;

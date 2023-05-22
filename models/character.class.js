@@ -60,7 +60,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-17.png',
         'img/2_character_pepe/1_idle/long_idle/I-18.png',
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
-        'img/2_character_pepe/1_idle/long_idle/I-20.png',
+        'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
     offset = {
         top: 70,

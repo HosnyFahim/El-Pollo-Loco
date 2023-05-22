@@ -137,7 +137,7 @@ class Character extends MovableObject {
             this.characterSleepAnimation();
         } else if (this.isDead()) {
             this.gameIsLost();
-        }
+        } else this.characterIdleAnimation();
     }
 
 
@@ -243,7 +243,7 @@ class Character extends MovableObject {
      */
     characterSleep() {
         let timepassed = new Date().getTime() - this.characterLastMovement;
-        timepassed = timepassed / 1000;
+        timepassed = timepassed / 1500;
         return timepassed > 1.5;
     }
 

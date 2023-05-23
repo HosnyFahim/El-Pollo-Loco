@@ -178,6 +178,11 @@ canvas {
 
 
 .audioOnIcon {
+    background-color: rgba(248, 212, 95, 0.4);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 45px;
     height: 45px;
     position: absolute;
@@ -194,11 +199,16 @@ canvas {
 
 
 .audioOffIcon {
+    background-color: rgba(248, 212, 95, 0.4);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 45px;
     height: 45px;
     position: absolute;
-    right: 120px;
-    top: 10px;
+    right: 80px;
+    top: 9px;
 }
 
 
@@ -219,7 +229,7 @@ canvas {
 
 .positionAbsoluteLeft {
     position: absolute;
-    left: 10px;
+    left: 30px;
     bottom: 10px;
     display: flex;
     flex-direction: row;
@@ -229,7 +239,7 @@ canvas {
 
 .positionAbsoluteRight {
     position: absolute;
-    right: 10px;
+    right: 30px;
     bottom: 10px;
     display: flex;
     flex-direction: row;
@@ -477,6 +487,10 @@ canvas {
 
 
 .d-none {
+    display: none !important;
+}
+
+.displayNone {
     display: none;
 }
 

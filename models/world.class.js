@@ -265,7 +265,7 @@ class World {
      * This Function is used to Throw the bottles. 
      */
     checkThrowObjects() {
-        if (this.keyboard.a && this.maxBottlesToThrow > 0) {
+        if (this.keyboard.s && this.maxBottlesToThrow > 0) {
             let bottle = new ThrowableObject(this.character.x, this.character.y, this.character.otherDirection);
             this.throwableObject.push(bottle);
             audioThrowBottle.play();

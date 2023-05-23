@@ -3,7 +3,7 @@ class Keyboard {
     left = false;
     right = false;
     space = false;
-    a = false;
+    s = false;
 
 
     constructor() {
@@ -38,8 +38,8 @@ class Keyboard {
                 this.space = true;
             }
 
-            if (event.keyCode == 65) {
-                this.a = true;
+            if (event.keyCode == 83) {
+                this.s = true;
             }
         });
 
@@ -65,8 +65,8 @@ class Keyboard {
                 this.space = false;
             }
 
-            if (event.keyCode == 65) {
-                this.a = false;
+            if (event.keyCode == 83) {
+                this.s = false;
             }
         });
     }
@@ -117,13 +117,13 @@ class Keyboard {
 
             document.getElementById('btnMobileThrow').addEventListener('touchstart', (event) => {
                 event.preventDefault();
-                this.a = true;
+                this.s = true;
             });
 
 
             document.getElementById('btnMobileThrow').addEventListener('touchend', (event) => {
                 event.preventDefault();
-                this.a = false;
+                this.s = false;
             });
         }, 500);
     }

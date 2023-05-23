@@ -52,15 +52,16 @@
 
 
             <!--Sound Btns-->
-            <div class="border audioOnIcon d-none" onclick="turnSoundOn()" id="audioOnIcon">
+            <div class="audioOnIcon displayNone" onclick="turnSoundOn()" id="audioOnIcon">
                 <img src="icons/soundon.png" style="width: 40px;">
             </div>
-            <img src="icons/audioOffIcon.png" class="audioOffIcon d-none" onclick="turnSoundOff()" id="audioOffIcon">
-            <!--Sound Btns-->
+            <div class="audioOffIcon" onclick="turnSoundOff()" id="audioOffIcon">
+                <img src="icons/soundoff.png" style="width: 40px;">
+            </div>
 
 
             <!--Fullscreen Btns-->
-            <div class="border enterFullscreenIcon d-none" onclick="openFullscreen()" id="enterFullscreenIcon">
+            <div class="border enterFullscreenIcon" onclick="openFullscreen()" id="enterFullscreenIcon">
                 <img src="icons/fullscreen.png" style="width: 30px;">
             </div>
             <div class="border exitFullscreenIcon d-none" onclick="closeFullscreen()" id="exitFullscreenIcon">
@@ -191,7 +192,7 @@
 
             <div class="controlDiv">
                 <div class="border" style="font-size: 30px; color: black;">
-                    A
+                    S
                 </div>
 
                 <p class="keyboardIcon">

@@ -34,7 +34,7 @@ function startGame() {
         world = new World(canvas, keyboard);
         closeLoadingScreen();
         playBackgroundMusic();
-    },);
+    }, 2000);
 }
 
 
@@ -288,6 +288,7 @@ function removeStylesForFullScreen() {
  * 
  */
 function turnSoundOff() {
+    addStyleSoundOff();
     audioBackgroundMusicEndboss.muted = true;
     audioBackgroundMusicInGame.muted = true;
     audioDeadChicken.muted = true;
@@ -308,6 +309,7 @@ function turnSoundOff() {
  * 
  */
 function turnSoundOn() {
+    addStyleSoundOn();
     audioBackgroundMusicEndboss.muted = false;
     audioBackgroundMusicInGame.muted = false;
     audioDeadChicken.muted = false;
@@ -320,6 +322,24 @@ function turnSoundOn() {
     audioThrowBottle.muted = false;
     audioSplashBottle.muted = false;
     audioSleepCharacter.muted = false;
+}
+
+
+/**
+ * The function adds a CSS class to hide an audio on icon and display an audio off icon.
+ */
+function addStyleSoundOn() {
+    document.getElementById('audioOnIcon').classList.add('displayNone');
+    document.getElementById('audioOffIcon').classList.remove('displayNone');
+}
+
+/**
+ * The function adds a style to turn off the sound by removing the displayNone class from the
+ * audioOnIcon element and adding it to the audioOffIcon element.
+ */
+function addStyleSoundOff() {
+    document.getElementById('audioOnIcon').classList.remove('displayNone');
+    document.getElementById('audioOffIcon').classList.add('displayNone');
 }
 
 

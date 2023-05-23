@@ -301,6 +301,7 @@ function turnSoundOff() {
     audioThrowBottle.muted = true;
     audioSplashBottle.muted = true;
     audioSleepCharacter.muted = true;
+    audioGameWin.muted = true;
 }
 
 
@@ -322,6 +323,7 @@ function turnSoundOn() {
     audioThrowBottle.muted = false;
     audioSplashBottle.muted = false;
     audioSleepCharacter.muted = false;
+    audioGameWin.muted = false;
 }
 
 

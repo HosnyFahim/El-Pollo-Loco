@@ -24,43 +24,43 @@
 
 @media only screen and (max-height: 560px) {
     canvas {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border: none;
         border-radius: 0px;
     }
 
     .gameOverScreenContainer {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
     }
 
     .startScreen {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border-radius: 0px;
     }
 
     .containerGameDescription {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border-radius: 0px;
     }
 
     .containerGameControlls {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border-radius: 0px;
     }
 
     .gameOverScreen {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border-radius: 0px;
     }
 
     .winScreenContainer {
-        height: 100vh;
+        height: 99vh;
         width: 100vw;
         border-radius: 0px;
     }
@@ -271,7 +271,7 @@
 
 @media only screen and (max-height: 480px) {
     canvas {
-        height: 100vh;
+        height: 99vh;
     }
 
     h1 {
@@ -304,7 +304,7 @@
 
 @media (max-height: 480px) {
     .startScreen {
-        height: 100vh !important;
+        height: 99vh !important;
     }
 
     h1 {
@@ -332,7 +332,7 @@
 /****************************  Only for Gameover Screen ****************************/
 @media (max-height: 480px) {
     .gameOverScreen {
-        height: 100vh !important;
+        height: 99vh !important;
     }
 }
 
@@ -625,7 +625,7 @@
 /****************************  Only for Loading Screen ****************************/
 @media (max-height: 595px) {
     .loadingScreenContainer {
-        height: 100%;
+        height: 100vh;
     }
 
     h1 {

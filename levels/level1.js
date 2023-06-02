@@ -14,8 +14,6 @@ function initLevel() {
             new NormalChicken(),
             new NormalChicken(),
             new NormalChicken(),
-            new NormalChicken(),
-            new NormalChicken(),
             new SmallChicken(),
             new SmallChicken(),
             new NormalChicken(),
@@ -24,8 +22,7 @@ function initLevel() {
             new NormalChicken(),
             new SmallChicken(),
             new SmallChicken(),
-            new SmallChicken(),
-            new SmallChicken(),
+            new SmallChicken()
         ],
 
 
@@ -87,8 +84,6 @@ function initLevel() {
 
 
         [
-            new Coin('img/8_coin/coin_1.png'),
-            new Coin('img/8_coin/coin_1.png'),
             new Coin('img/8_coin/coin_1.png'),
             new Coin('img/8_coin/coin_1.png'),
             new Coin('img/8_coin/coin_1.png'),
